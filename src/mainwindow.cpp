@@ -17,8 +17,7 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "lib/termwidget.h"
-#include "lib/terminaldisplay.h"
+#include "lib/qtermwidget.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -70,8 +69,12 @@ void MainWindow::changeEvent(QEvent *e)
 
 void MainWindow::slotNewTab()
 {
-    Terminal::TermWidget *console = new Terminal::TermWidget();
-    console->setScrollBarPosition(Terminal::TermWidget::ScrollBarRight);
+    QFont font("Monospace", 12);
+
+    QTermWidget *console = new QTermWidget();
+    console->setTerminalFont(font);
+    console->setColorScheme("WhiteOnBlack");
+    console->setScrollBarPosition(QTermWidget::ScrollBarRight);
 
     ui->tabWidget->addTab(console, "Shell");
     ui->tabWidget->setCurrentWidget(console);
@@ -79,6 +82,12 @@ void MainWindow::slotNewTab()
 
     connect(console, SIGNAL(finished()),
             this, SLOT(slotCloseCurrentTab()));
+
+    qDebug() << "* INFO *************************";
+    qDebug() << " availableKeyBindings:" << console->availableKeyBindings();
+    qDebug() << " keyBindings:" << console->keyBindings();
+    qDebug() << " availableColorSchemes:" << console->availableColorSchemes();
+    qDebug() << "* INFO END *********************";
 }
 
 void MainWindow::slotNewWindow()
@@ -101,22 +110,22 @@ void MainWindow::slotCloseCurrentTab()
 
 void MainWindow::slotCopy()
 {
-    Terminal::TermWidget *console =
-            qobject_cast<Terminal::TermWidget*>(ui->tabWidget->currentWidget());
+    QTermWidget *console =
+        qobject_cast<QTermWidget *>(ui->tabWidget->currentWidget());
     console->copyClipboard();
 }
 
 void MainWindow::slotPaste()
 {
-    Terminal::TermWidget *console =
-            qobject_cast<Terminal::TermWidget*>(ui->tabWidget->currentWidget());
+    QTermWidget *console =
+        qobject_cast<QTermWidget *>(ui->tabWidget->currentWidget());
     console->pasteClipboard();
 }
 
 void MainWindow::slotFind()
 {
-    Terminal::TermWidget *console =
-            qobject_cast<Terminal::TermWidget*>(ui->tabWidget->currentWidget());
+    QTermWidget *console =
+        qobject_cast<QTermWidget *>(ui->tabWidget->currentWidget());
 }
 
 void MainWindow::slotCloseTab(int index)
