@@ -1,56 +1,42 @@
-include_directories(
-    ${VibeWidgets_INCLUDE_DIRS}
-)
+include_directories(${VibeWidgets_INCLUDE_DIRS})
 
-add_definitions(-DHAVE_POSIX_OPENPT)
-#add_definitions(-DHAVE_GETPT)
+#check_function_exists(updwtmpx HAVE_UPDWTMPX)
+#if (HAVE_UPDWTMPX)
+#    add_definitions(-DHAVE_UPDWTMPX)
+#endif()
+
 add_definitions(${VibeWidgets_DEFINITIONS})
 
-set(TERMWIDGET_SOURCES
-    lib/terminalcharacterdecoder.cpp
-    lib/keyboardtranslator.cpp
-    lib/screen.cpp
-    lib/history.cpp
-    lib/blockarray.cpp
-    lib/wcwidth.cpp
-    lib/screenwindow.cpp
-    lib/emulation.cpp
-    lib/vt102emulation.cpp
-    lib/terminaldisplay.cpp
-    lib/filter.cpp
-    lib/pty.cpp
-    lib/kpty.cpp
-    lib/k3process.cpp
-    lib/k3processcontroller.cpp
-    lib/session.cpp
-    lib/shellcommand.cpp
-    lib/termwidget.cpp
-)
+set(KB_LAYOUT_DIR ${CMAKE_INSTALL_FULL_DATADIR}/terminal/kb-layouts)
+message(STATUS "Keyboard layouts will be installed in: ${KB_LAYOUT_DIR}")
 
-set(TERMWIDGET_HEADERS
-    lib/terminalcharacterdecoder.h
-    lib/character.h
-    lib/charactercolor.h
-    lib/keyboardtranslator.h
-    lib/extendeddefaulttranslator.h
-    lib/screen.h
-    lib/history.h
-    lib/blockarray.h
-    lib/wcwidth.h
-    lib/screenwindow.h
-    lib/emulation.h
-    lib/vt102emulation.h
-    lib/terminaldisplay.h
-    lib/filter.h
-    lib/linefont.h
-    lib/pty.h
-    lib/kpty.h
-    lib/kpty_p.h
-    lib/k3process.h
-    lib/k3processcontroller.h
-    lib/session.h
-    lib/shellcommand.h
-    lib/termwidget.h
+set(COLORSCHEMES_DIR ${CMAKE_INSTALL_FULL_DATADIR}/terminal/color-schemes)
+message(STATUS "Color schemes will be insatlled in: ${COLORSCHEMES_DIR}")
+
+configure_file(config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h)
+
+set(TERMWIDGET_SOURCES
+    lib/BlockArray.cpp
+    lib/ColorScheme.cpp
+    lib/Emulation.cpp
+    lib/Filter.cpp
+    lib/History.cpp
+    lib/KeyboardTranslator.cpp
+    lib/konsole_wcwidth.cpp
+    lib/kprocess.cpp
+    lib/kpty.cpp
+    lib/kptydevice.cpp
+    lib/kptyprocess.cpp
+    lib/Pty.cpp
+    lib/qtermwidget.cpp
+    lib/Screen.cpp
+    lib/ScreenWindow.cpp
+    lib/Session.cpp
+    lib/ShellCommand.cpp
+    lib/TerminalCharacterDecoder.cpp
+    lib/TerminalDisplay.cpp
+    lib/tools.cpp
+    lib/Vt102Emulation.cpp
 )
 
 set(SOURCES
@@ -75,3 +61,6 @@ target_link_libraries(Terminal ${VibeWidgets_LIBRARIES})
 
 install(FILES terminal.desktop DESTINATION ${CMAKE_INSTALL_APPSDIR})
 install(TARGETS Terminal DESTINATION ${CMAKE_INSTALL_PROGSDIR})
+
+install(DIRECTORY lib/kb-layouts/ DESTINATION ${KB_LAYOUT_DIR} FILES_MATCHING PATTERN "*.keytab" )
+install(DIRECTORY lib/color-schemes/ DESTINATION ${COLORSCHEMES_DIR} FILES_MATCHING PATTERN "*.*schem*")

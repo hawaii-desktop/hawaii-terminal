@@ -1,25 +1,27 @@
-/****************************************************************************
- *
- * Copyright (c) 2010 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
- * Copyright (c) 2002 Waldo Bastian <bastian@kde.org>
- * Copyright (c) 2002-2003, 2007 Oswald Buddenhagen <ossi@kde.org>
- * Copyright (c) 2008 e_k <e_k@users.sourceforge.net>
- *
- * All rights reserved.
- * Contact: Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
- *
- * GNU General Public License Usage
- * This file may be used under the terms of the GNU General Public
- * License version 2 as published by the Free Software Foundation
- * and appearing in the file LICENSE.GPL included in the packaging
- * of this file.  Please review the following information to
- * ensure the GNU General Public License version 2 requirements
- * will be met: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html.
- *
- ***************************************************************************/
+/* This file is part of the KDE libraries
 
-#ifndef KPTY_H
-#define KPTY_H
+    Copyright (C) 2003,2007 Oswald Buddenhagen <ossi@kde.org>
+
+    Rewritten for QT4 by e_k <e_k at users.sourceforge.net>, Copyright (C)2008
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Library General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Library General Public License for more details.
+
+    You should have received a copy of the GNU Library General Public License
+    along with this library; see the file COPYING.LIB.  If not, write to
+    the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+    Boston, MA 02110-1301, USA.
+*/
+
+#ifndef kpty_h
+#define kpty_h
 
 #include <QtCore>
 
@@ -30,9 +32,9 @@ struct termios;
  * Provides primitives for opening & closing a pseudo TTY pair, assigning the
  * controlling TTY, utmp registration and setting various terminal attributes.
  */
-class KPty
-{
+class KPty {
     Q_DECLARE_PRIVATE(KPty)
+
 public:
 
     /**
@@ -55,6 +57,8 @@ public:
      */
     bool open();
 
+    bool open(int fd);
+
     /**
      * Close the pty master/slave pair.
      */
@@ -73,6 +77,7 @@ public:
      * used.
      */
     void closeSlave();
+    bool openSlave();
 
     /**
      * Creates a new session and process group and makes this pty the
@@ -90,7 +95,7 @@ public:
      *  of the client. For local logins from inside an X session it should
      *  be the name of the X display. Otherwise it should be empty.
      */
-    void login(const char *user = 0, const char *remotehost = 0);
+    void login(const char * user = 0, const char * remotehost = 0);
 
     /**
      * Removes the utmp entry for this tty.
@@ -110,7 +115,7 @@ public:
      *  the struct in your class, in your method.
      * @return @c true on success, false otherwise
      */
-    bool tcGetAttr(struct ::termios *ttmode) const;
+    bool tcGetAttr(struct ::termios * ttmode) const;
 
     /**
      * Wrapper around tcsetattr(3) with mode TCSANOW.
@@ -121,7 +126,7 @@ public:
      * @return @c true on success, false otherwise. Note that success means
      *  that @em at @em least @em one attribute could be set.
      */
-    bool tcSetAttr(struct ::termios *ttmode);
+    bool tcSetAttr(struct ::termios * ttmode);
 
     /**
      * Change the logical (screen) size of the pty.
@@ -154,7 +159,7 @@ public:
      *
      * This function should be called only while the pty is open.
      */
-    const char *ttyName() const;
+    const char * ttyName() const;
 
     /**
      * @return the file descriptor of the master pty
@@ -174,12 +179,13 @@ protected:
     /**
      * @internal
      */
-    KPty(KPtyPrivate *d);
+    KPty(KPtyPrivate * d);
 
     /**
      * @internal
      */
-    KPtyPrivate *const d_ptr;
+    KPtyPrivate * const d_ptr;
 };
 
-#endif // KPTY_H
+#endif
+
