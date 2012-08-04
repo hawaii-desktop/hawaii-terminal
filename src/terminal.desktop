@@ -1,0 +1,22 @@
+[Desktop Entry]
+Type=Application
+Name=Terminal
+Name[it]=Terminale
+Comment=Use the command line
+Comment[it]=Usa la riga di comando
+TryExec=Terminal
+Exec=Terminal
+Icon=utilities-terminal
+Categories=Qt;Mirage;Utility;TerminalEmulator;
+OnlyShowIn=Mirage;
+Keywords=Run;
+Actions=New;
+
+X-Mirage-Identifier=org.maui.Terminal
+X-Mirage-Version=0.0.0
+
+[Desktop Action New]
+Name=New Terminal
+Name[it]=Nuovo terminale
+Exec=Terminal
+OnlyShowIn=Mirage;
