@@ -56,7 +56,7 @@ set(UI_SOURCES
 qt5_wrap_ui(UI_FILES ${UI_SOURCES})
 
 add_executable(Terminal ${SOURCES} ${UI_FILES})
-set_target_properties(Terminal PROPERTIES COMPILE_FLAGS "-fPIC")
+set_target_properties(Terminal PROPERTIES COMPILE_FLAGS ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS})
 target_link_libraries(Terminal ${VibeWidgets_LIBRARIES})
 
 install(FILES terminal.desktop DESTINATION ${CMAKE_INSTALL_APPSDIR})
