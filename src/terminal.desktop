@@ -7,16 +7,16 @@ Comment[it]=Usa la riga di comando
 TryExec=Terminal
 Exec=Terminal
 Icon=utilities-terminal
-Categories=Qt;Mirage;Utility;TerminalEmulator;
-OnlyShowIn=Mirage;
+Categories=Qt;Hawaii;Utility;TerminalEmulator;
+OnlyShowIn=Hawaii;
 Keywords=Run;
 Actions=New;
 
-X-Mirage-Identifier=org.maui.Terminal
-X-Mirage-Version=0.0.0
+X-Hawaii-Identifier=org.maui.Terminal
+X-Hawaii-Version=0.0.0
 
 [Desktop Action New]
 Name=New Terminal
 Name[it]=Nuovo terminale
 Exec=Terminal
-OnlyShowIn=Mirage;
+OnlyShowIn=Hawaii;
