@@ -33,8 +33,8 @@ set(TERMWIDGET_SOURCES
     lib/ScreenWindow.cpp
     lib/Session.cpp
     lib/ShellCommand.cpp
-    lib/TerminalCharacterDecoder.cpp
-    lib/TerminalDisplay.cpp
+    lib/terminalCharacterDecoder.cpp
+    lib/terminalDisplay.cpp
     lib/tools.cpp
     lib/Vt102Emulation.cpp
 )
@@ -55,12 +55,12 @@ set(UI_SOURCES
 
 qt5_wrap_ui(UI_FILES ${UI_SOURCES})
 
-add_executable(Terminal ${SOURCES} ${UI_FILES})
-set_target_properties(Terminal PROPERTIES COMPILE_FLAGS ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS})
-target_link_libraries(Terminal ${VibeWidgets_LIBRARIES})
+add_executable(terminal ${SOURCES} ${UI_FILES})
+set_target_properties(terminal PROPERTIES COMPILE_FLAGS ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS})
+target_link_libraries(terminal ${VibeWidgets_LIBRARIES})
 
 install(FILES terminal.desktop DESTINATION ${CMAKE_INSTALL_APPSDIR})
-install(TARGETS Terminal DESTINATION ${CMAKE_INSTALL_PROGSDIR})
+install(TARGETS terminal DESTINATION ${CMAKE_INSTALL_PROGSDIR})
 
 install(DIRECTORY lib/kb-layouts/ DESTINATION ${KB_LAYOUT_DIR} FILES_MATCHING PATTERN "*.keytab" )
 install(DIRECTORY lib/color-schemes/ DESTINATION ${COLORSCHEMES_DIR} FILES_MATCHING PATTERN "*.*schem*")
