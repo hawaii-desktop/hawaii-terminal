@@ -42,7 +42,7 @@
      <x>0</x>
      <y>0</y>
      <width>790</width>
-     <height>24</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
@@ -70,67 +70,91 @@
    <addaction name="menu_Edit"/>
   </widget>
   <action name="actionNewTab">
+   <property name="icon">
+    <iconset theme="tab-new"/>
+   </property>
    <property name="text">
     <string>New &amp;Tab</string>
    </property>
    <property name="shortcut">
-    <string>Meta+T</string>
+    <string>Ctrl+T</string>
    </property>
   </action>
   <action name="actionNewWindow">
+   <property name="icon">
+    <iconset theme="window-new"/>
+   </property>
    <property name="text">
     <string>New &amp;Window</string>
    </property>
    <property name="shortcut">
-    <string>Meta+N</string>
+    <string>Ctrl+N</string>
    </property>
   </action>
   <action name="actionOpenFileManager">
+   <property name="icon">
+    <iconset theme="system-file-manager"/>
+   </property>
    <property name="text">
     <string>&amp;Open File Manager</string>
    </property>
   </action>
   <action name="actionCloseTab">
+   <property name="icon">
+    <iconset theme="window-close"/>
+   </property>
    <property name="text">
     <string>&amp;Close Tab</string>
    </property>
    <property name="shortcut">
-    <string>Meta+W</string>
+    <string>Ctrl+W</string>
    </property>
   </action>
   <action name="actionQuit">
+   <property name="icon">
+    <iconset theme="exit"/>
+   </property>
    <property name="text">
     <string>&amp;Quit</string>
    </property>
    <property name="shortcut">
-    <string>Meta+Q</string>
+    <string>Ctrl+Q</string>
    </property>
    <property name="menuRole">
     <enum>QAction::QuitRole</enum>
    </property>
   </action>
   <action name="actionCopy">
+   <property name="icon">
+    <iconset theme="edit-copy"/>
+   </property>
    <property name="text">
     <string>&amp;Copy</string>
    </property>
    <property name="shortcut">
-    <string>Meta+C</string>
+    <string>Ctrl+C</string>
    </property>
   </action>
   <action name="actionPaste">
+   <property name="icon">
+    <iconset theme="edit-paste"/>
+   </property>
    <property name="text">
     <string>&amp;Paste</string>
    </property>
    <property name="shortcut">
-    <string>Meta+V</string>
+    <string>Ctrl+V</string>
    </property>
   </action>
   <action name="actionFind">
+   <property name="icon">
+    <iconset theme="edit-find"/>
+   </property>
    <property name="text">
     <string>&amp;Find...</string>
    </property>
    <property name="shortcut">
-    <string>Meta+F</string>
+    <string>Ctrl+F, Ctrl+S</string>
    </property>
   </action>
  </widget>
