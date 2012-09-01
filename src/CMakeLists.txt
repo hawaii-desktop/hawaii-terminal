@@ -33,8 +33,8 @@ set(TERMWIDGET_SOURCES
     lib/ScreenWindow.cpp
     lib/Session.cpp
     lib/ShellCommand.cpp
-    lib/terminalCharacterDecoder.cpp
-    lib/terminalDisplay.cpp
+    lib/TerminalCharacterDecoder.cpp
+    lib/TerminalDisplay.cpp
     lib/tools.cpp
     lib/Vt102Emulation.cpp
 )
