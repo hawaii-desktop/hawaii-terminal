@@ -79,6 +79,7 @@ void MainWindow::slotNewTab()
     QTermWidget *console = new QTermWidget();
     console->setTerminalFont(font);
     console->setColorScheme("WhiteOnBlack");
+    console->setKeyBindings("linux");
     console->setScrollBarPosition(QTermWidget::ScrollBarRight);
 
     ui->tabWidget->addTab(console, "Shell");
