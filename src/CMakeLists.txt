@@ -60,7 +60,7 @@ set_target_properties(terminal PROPERTIES COMPILE_FLAGS ${Qt5Widgets_EXECUTABLE_
 target_link_libraries(terminal ${VibeWidgets_LIBRARIES})
 
 install(FILES terminal.desktop DESTINATION ${CMAKE_INSTALL_APPSDIR})
-install(TARGETS terminal DESTINATION ${CMAKE_INSTALL_PROGSDIR})
+install(TARGETS terminal DESTINATION ${CMAKE_INSTALL_FULL_PROGSDIR})
 
 install(DIRECTORY lib/kb-layouts/ DESTINATION ${KB_LAYOUT_DIR} FILES_MATCHING PATTERN "*.keytab" )
 install(DIRECTORY lib/color-schemes/ DESTINATION ${COLORSCHEMES_DIR} FILES_MATCHING PATTERN "*.*schem*")
