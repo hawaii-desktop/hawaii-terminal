@@ -50,7 +50,7 @@ QString get_kb_layout_dir()
 }
 
 /*! Helper function to get possible location of layout files.
-By default the COLORSCHEMES_DIR is used (linux/BSD/macports).
+By default the COLOR_SCHEMES_DIR is used (linux/BSD/macports).
 But in some cases (apple bundle) there can be more locations).
 */
 QString get_color_schemes_dir()
@@ -61,10 +61,10 @@ QString get_color_schemes_dir()
 //    qDebug() << __FILE__ << __FUNCTION__;
 
     QString rval = "";
-    QString k(COLORSCHEMES_DIR);
+    QString k(COLOR_SCHEMES_DIR);
     QDir d(k);
 
-//    qDebug() << "default COLORSCHEMES_DIR: " << k;
+//    qDebug() << "default COLOR_SCHEMES_DIR: " << k;
 
     if (d.exists())
         rval =  k.append("/");

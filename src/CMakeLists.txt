@@ -10,8 +10,8 @@ add_definitions(${VibeWidgets_DEFINITIONS})
 set(KB_LAYOUT_DIR ${CMAKE_INSTALL_FULL_DATADIR}/terminal/kb-layouts)
 message(STATUS "Keyboard layouts will be installed in: ${KB_LAYOUT_DIR}")
 
-set(COLORSCHEMES_DIR ${CMAKE_INSTALL_FULL_DATADIR}/terminal/color-schemes)
-message(STATUS "Color schemes will be insatlled in: ${COLORSCHEMES_DIR}")
+set(COLOR_SCHEMES_DIR ${CMAKE_INSTALL_FULL_DATADIR}/terminal/color-schemes)
+message(STATUS "Color schemes will be insatlled in: ${COLOR_SCHEMES_DIR}")
 
 configure_file(config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
@@ -63,4 +63,4 @@ install(FILES terminal.desktop DESTINATION ${CMAKE_INSTALL_APPSDIR})
 install(TARGETS terminal DESTINATION ${CMAKE_INSTALL_FULL_PROGSDIR})
 
 install(DIRECTORY lib/kb-layouts/ DESTINATION ${KB_LAYOUT_DIR} FILES_MATCHING PATTERN "*.keytab" )
-install(DIRECTORY lib/color-schemes/ DESTINATION ${COLORSCHEMES_DIR} FILES_MATCHING PATTERN "*.*schem*")
+install(DIRECTORY lib/color-schemes/ DESTINATION ${COLOR_SCHEMES_DIR} FILES_MATCHING PATTERN "*.*schem*")
