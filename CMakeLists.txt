@@ -13,7 +13,7 @@ set(TERMINAL_VERSION_PATCH 0)
 set(TERMINAL_VERSION_STRING "${TERMINAL_VERSION_MAJOR}.${TERMINAL_VERSION_MINOR}.${TERMINAL_VERSION_PATCH}")
 
 # Installation directories
-include(MauiInstallDirs)
+include(HawaiiInstallDirs)
 
 # Make CPack available to easy generate binary packages
 include(CPack)
