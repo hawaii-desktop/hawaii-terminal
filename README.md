@@ -1,13 +1,14 @@
+Terminal
+========
+
 Terminal emulator for the Hawaii desktop environment.
 
-Dependencies
-============
+## Dependencies
 
 In order to build and install Terminal you need Vibe.
 The Vibe repository contains all the instructions to bring it up.
 
-Build
-=====
+## Build
 
 Building Terminal is a piece of cake.
 
@@ -36,8 +37,7 @@ The CMAKE_BUILD_TYPE parameter allows the following values:
     Release: release build
     RelWithDebInfo: release build with debugging information
 
-Installation
-============
+## Installation
 
 It's really, it's just a matter of typing:
 
