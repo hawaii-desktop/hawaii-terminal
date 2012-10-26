@@ -30,7 +30,7 @@ To do a release build instead it can be:
 If not passed, the CMAKE_INSTALL_PREFIX parameter defaults to /usr/local.
 You have to specify a path that fits your needs, /opt/hawaii is just an example.
 
-Package maintainers would pass ''-DCMAKE_INSTALL_PREFIX=/usr''.
+Package maintainers would pass *-DCMAKE_INSTALL_PREFIX=/usr*.
 
 The CMAKE_BUILD_TYPE parameter allows the following values:
 
