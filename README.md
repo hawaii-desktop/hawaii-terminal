@@ -6,7 +6,6 @@ Terminal emulator for the Hawaii desktop environment.
 ## Dependencies
 
 In order to build and install Terminal you need Vibe.
-The Vibe repository contains all the instructions to bring it up.
 
 ## Build
 
