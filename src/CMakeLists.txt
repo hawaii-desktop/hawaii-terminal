@@ -59,7 +59,7 @@ add_executable(terminal ${SOURCES} ${UI_FILES})
 set_target_properties(terminal PROPERTIES COMPILE_FLAGS ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS})
 target_link_libraries(terminal ${VibeWidgets_LIBRARIES})
 
-install(FILES terminal.desktop DESTINATION ${CMAKE_INSTALL_APPSDIR})
+install(FILES terminal.desktop DESTINATION ${CMAKE_INSTALL_APPLICATIONSDIR})
 install(TARGETS terminal DESTINATION ${CMAKE_INSTALL_FULL_BINDIR})
 
 install(DIRECTORY lib/kb-layouts/ DESTINATION ${KB_LAYOUT_DIR} FILES_MATCHING PATTERN "*.keytab" )
