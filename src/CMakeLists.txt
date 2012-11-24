@@ -55,12 +55,12 @@ set(UI_SOURCES
 
 qt5_wrap_ui(UI_FILES ${UI_SOURCES})
 
-add_executable(terminal ${SOURCES} ${UI_FILES})
-set_target_properties(terminal PROPERTIES COMPILE_FLAGS ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS})
-target_link_libraries(terminal ${VibeWidgets_LIBRARIES})
+add_executable(hawaii-terminal ${SOURCES} ${UI_FILES})
+set_target_properties(hawaii-terminal PROPERTIES COMPILE_FLAGS ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS})
+target_link_libraries(hawaii-terminal ${VibeWidgets_LIBRARIES})
 
-install(FILES terminal.desktop DESTINATION ${CMAKE_INSTALL_APPLICATIONSDIR})
-install(TARGETS terminal DESTINATION ${CMAKE_INSTALL_FULL_BINDIR})
+install(FILES hawaii-terminal.desktop DESTINATION ${CMAKE_INSTALL_APPLICATIONSDIR})
+install(TARGETS hawaii-terminal DESTINATION ${CMAKE_INSTALL_FULL_BINDIR})
 
 install(DIRECTORY lib/kb-layouts/ DESTINATION ${KB_LAYOUT_DIR} FILES_MATCHING PATTERN "*.keytab" )
 install(DIRECTORY lib/color-schemes/ DESTINATION ${COLOR_SCHEMES_DIR} FILES_MATCHING PATTERN "*.*schem*")
