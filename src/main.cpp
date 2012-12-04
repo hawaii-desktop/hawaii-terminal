@@ -24,18 +24,17 @@
  * $END_LICENSE$
  ***************************************************************************/
 
-#include <VApplication>
+#include <QApplication>
 
 #include "mainwindow.h"
 
 int main(int argc, char *argv[])
 {
-    VApplication app(argc, argv);
+    QApplication app(argc, argv);
     app.setApplicationName("Terminal");
     app.setApplicationVersion("0.0.0");
     app.setOrganizationDomain("maui-project.org");
-    app.setOrganizationName("Maui");
-    app.setIdentifier("org.maui.Terminal");
+    app.setOrganizationName("Hawaii");
     app.setWindowIcon(QIcon::fromTheme("utilities-terminal"));
 
     MainWindow *mainWindow = new MainWindow();
