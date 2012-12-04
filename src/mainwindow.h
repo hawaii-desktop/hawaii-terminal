@@ -29,6 +29,8 @@
 
 #include <QMainWindow>
 
+class VSettings;
+
 namespace Ui
 {
     class MainWindow;
@@ -46,8 +48,10 @@ protected:
 
 private:
     Ui::MainWindow *ui;
+    VSettings *m_settings;
 
 private slots:
+    void settingsChanged();
     void slotNewTab();
     void slotNewWindow();
     void slotOpenFileManager();

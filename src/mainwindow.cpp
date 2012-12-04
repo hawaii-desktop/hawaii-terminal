@@ -24,6 +24,9 @@
  * $END_LICENSE$
  ***************************************************************************/
 
+#include <QDebug>
+#include <VibeCore/VSettings>
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "lib/qtermwidget.h"
@@ -33,6 +36,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    // Settings
+    m_settings = new VSettings("org.hawaii.desktop");
+    connect(m_settings, SIGNAL(changed()),
+            this, SLOT(settingsChanged()));
 
     // Connect signals
     connect(ui->actionNewTab, SIGNAL(triggered()),
@@ -61,6 +69,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete m_settings;
 }
 
 void MainWindow::changeEvent(QEvent *e)
@@ -76,9 +85,23 @@ void MainWindow::changeEvent(QEvent *e)
     }
 }
 
+void MainWindow::settingsChanged()
+{
+    for (int i = 0; i < ui->tabWidget->count(); i++) {
+        QWidget *widget = ui->tabWidget->widget(i);
+        QTermWidget *console = qobject_cast<QTermWidget *>(widget);
+        if (console) {
+            QFont font(m_settings->value("interface/monospace-font-name").toString());
+            font.setPointSize(m_settings->value("interface/monospace-font-size").toInt());
+            console->setTerminalFont(font);
+        }
+    }
+}
+
 void MainWindow::slotNewTab()
 {
-    QFont font("Monospace", 12);
+    QFont font(m_settings->value("interface/monospace-font-name").toString());
+    font.setPointSize(m_settings->value("interface/monospace-font-size").toInt());
 
     QTermWidget *console = new QTermWidget();
     console->setTerminalFont(font);
@@ -92,12 +115,6 @@ void MainWindow::slotNewTab()
 
     connect(console, SIGNAL(finished()),
             this, SLOT(slotCloseCurrentTab()));
-
-    qDebug() << "* INFO *************************";
-    qDebug() << " availableKeyBindings:" << console->availableKeyBindings();
-    qDebug() << " keyBindings:" << console->keyBindings();
-    qDebug() << " availableColorSchemes:" << console->availableColorSchemes();
-    qDebug() << "* INFO END *********************";
 }
 
 void MainWindow::slotNewWindow()
