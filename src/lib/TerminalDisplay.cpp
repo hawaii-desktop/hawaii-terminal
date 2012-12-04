@@ -20,8 +20,6 @@
     02110-1301  USA.
 */
 
-#include <config.h>
-
 // Own
 #include "TerminalDisplay.h"
 
@@ -30,7 +28,6 @@
 #include <QtWidgets/QBoxLayout>
 #include <QtGui/QClipboard>
 #include <QtGui/QKeyEvent>
-#include <QtGui/QDrag>
 #include <QtCore/QEvent>
 #include <QtCore/QTime>
 #include <QtCore/QFile>
@@ -38,6 +35,7 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLayout>
+#include <QtGui/QDrag>
 #include <QtGui/QPainter>
 #include <QtGui/QPixmap>
 #include <QtWidgets/QScrollBar>
@@ -732,7 +730,11 @@ void TerminalDisplay::drawCharacters(QPainter& painter,
         if (_bidiEnabled)
             painter.drawText(rect,0,text);
         else
-            painter.drawText(rect,0,LTR_OVERRIDE_CHAR+text);
+#if QT_VERSION >= 0x040800
+            painter.drawText(rect, Qt::AlignBottom, LTR_OVERRIDE_CHAR + text);
+#else
+            painter.drawText(rect, 0, LTR_OVERRIDE_CHAR + text);
+#endif
     }
 }
 
@@ -2537,6 +2539,14 @@ void TerminalDisplay::keyPressEvent( QKeyEvent* event )
         {
             _screenWindow->scrollBy( ScreenWindow::ScrollLines , 1 );
         }
+        else if ( event->key() == Qt::Key_End)
+        {
+            scrollToEnd();
+        }
+        else if ( event->key() == Qt::Key_Home)
+        {
+            _screenWindow->scrollTo(0);
+        }
         else
             update = false;
 
@@ -2567,7 +2577,12 @@ void TerminalDisplay::keyPressEvent( QKeyEvent* event )
     if ( emitKeyPressSignal )
     {
         emit keyPressedSignal(event);
-        scrollToEnd();
+        if (!(event->modifiers().testFlag(Qt::ShiftModifier)
+             || event->modifiers().testFlag(Qt::ControlModifier)
+             || event->modifiers().testFlag(Qt::AltModifier)))
+        {
+            scrollToEnd();
+        }
     }
 
     event->accept();

@@ -7,8 +7,6 @@
  * Markus Kuhn -- 2001-01-12 -- public domain
  */
 
-#include <config.h>
-
 #include "konsole_wcwidth.h"
 
 struct interval {

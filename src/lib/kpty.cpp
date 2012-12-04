@@ -22,10 +22,9 @@
    Boston, MA 02110-1301, USA.
 */
 
-#include <config.h>
-
 #include "kpty_p.h"
 
+#include <config.h>
 
 #if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__DragonFly__)
 #define HAVE_LOGIN

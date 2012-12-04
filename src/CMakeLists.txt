@@ -1,9 +1,7 @@
 include_directories(${VibeWidgets_INCLUDE_DIRS})
 
-#check_function_exists(updwtmpx HAVE_UPDWTMPX)
-#if (HAVE_UPDWTMPX)
-#    add_definitions(-DHAVE_UPDWTMPX)
-#endif()
+include(CheckFunctionExists)
+check_function_exists(updwtmpx HAVE_UPDWTMPX)
 
 add_definitions(${VibeWidgets_DEFINITIONS})
 

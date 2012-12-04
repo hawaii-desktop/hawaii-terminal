@@ -4,6 +4,7 @@
 
 #define HAVE_POSIX_OPENPT
 #define HAVE_SYS_TIME_H
+#cmakedefine HAVE_UPDWTMPX 1
 
 #define KB_LAYOUT_DIR "@KB_LAYOUT_DIR@"
 #define COLOR_SCHEMES_DIR "@COLOR_SCHEMES_DIR@"

@@ -21,8 +21,6 @@
 
 */
 
-#include <config.h>
-
 // Own
 #include "BlockArray.h"
 

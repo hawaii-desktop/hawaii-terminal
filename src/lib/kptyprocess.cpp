@@ -27,7 +27,6 @@
     Boston, MA 02110-1301, USA.
 */
 
-#include <config.h>
 
 #include "kptyprocess.h"
 #include "kprocess.h"

@@ -19,8 +19,6 @@
     02110-1301  USA.
 */
 
-#include <config.h>
-
 // Own
 #include "Emulation.h"
 
