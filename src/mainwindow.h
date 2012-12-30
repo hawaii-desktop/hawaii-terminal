@@ -60,6 +60,7 @@ private slots:
     void slotPaste();
     void slotFind();
     void slotCloseTab(int index);
+    void slotAbout();
 };
 
 #endif // MAINWINDOW_H
