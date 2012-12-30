@@ -26,6 +26,7 @@
 
 #include <QDebug>
 #include <VibeCore/VSettings>
+#include <VAboutDialog>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -59,6 +60,8 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(slotPaste()));
     connect(ui->actionFind, SIGNAL(triggered()),
             this, SLOT(slotFind()));
+    connect(ui->actionAbout, SIGNAL(triggered()),
+            this, SLOT(slotAbout()));
     connect(ui->tabWidget, SIGNAL(tabCloseRequested(int)),
             this, SLOT(slotCloseTab(int)));
 
@@ -161,6 +164,26 @@ void MainWindow::slotCloseTab(int index)
 
     if (ui->tabWidget->count() == 0)
         close();
+}
+
+void MainWindow::slotAbout()
+{
+    QStringList authors;
+    authors << "Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>";
+
+    VAboutDialog dialog(this);
+    dialog.setAuthors(authors);
+    dialog.setCopyright("Pier Luigi Fiorini");
+    dialog.setDescription("Hawaii Terminal Emulator.");
+    dialog.setLink(QUrl("http://www.maui-project.org/"));
+
+    QFile licenseFile(":/COPYING");
+    if (licenseFile.open(QIODevice::ReadOnly)) {
+        dialog.setLicenseText(licenseFile.readAll());
+        licenseFile.close();
+    }
+
+    dialog.exec();
 }
 
 #include "moc_mainwindow.cpp"
