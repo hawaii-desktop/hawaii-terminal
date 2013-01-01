@@ -309,3 +309,5 @@ void Pty::setupChildProcess()
     for (int signal=1;signal < NSIG; signal++)
         sigaction(signal,&action,0L);
 }
+
+#include "moc_Pty.cpp"

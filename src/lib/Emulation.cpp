@@ -455,6 +455,4 @@ ExtendedCharTable::~ExtendedCharTable()
 // global instance
 ExtendedCharTable ExtendedCharTable::instance;
 
-
-//#include "Emulation.moc"
-
+#include "moc_Emulation.cpp"

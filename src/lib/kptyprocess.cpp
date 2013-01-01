@@ -126,4 +126,4 @@ void KPtyProcess::setupChildProcess()
     KProcess::setupChildProcess();
 }
 
-//#include "kptyprocess.moc"
+#include "moc_kptyprocess.cpp"

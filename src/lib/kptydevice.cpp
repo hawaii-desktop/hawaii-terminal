@@ -420,3 +420,5 @@ qint64 KPtyDevice::writeData(const char *data, qint64 len)
     d->writeNotifier->setEnabled(true);
     return len;
 }
+
+#include "moc_kptydevice.cpp"

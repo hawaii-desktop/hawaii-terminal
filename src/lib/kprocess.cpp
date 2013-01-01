@@ -410,3 +410,4 @@ int KProcess::pid() const
 #endif
 }
 
+#include "moc_kprocess.cpp"

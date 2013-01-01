@@ -3,8 +3,6 @@ include_directories(${VibeWidgets_INCLUDE_DIRS})
 include(CheckFunctionExists)
 check_function_exists(updwtmpx HAVE_UPDWTMPX)
 
-add_definitions(${VibeWidgets_DEFINITIONS})
-
 set(KB_LAYOUT_DIR ${CMAKE_INSTALL_FULL_DATADIR}/terminal/kb-layouts)
 message(STATUS "Keyboard layouts will be installed in: ${KB_LAYOUT_DIR}")
 
@@ -54,11 +52,15 @@ set(UI_SOURCES
 qt5_wrap_ui(UI_FILES ${UI_SOURCES})
 
 add_executable(hawaii-terminal ${SOURCES} ${UI_FILES})
-set_target_properties(hawaii-terminal PROPERTIES COMPILE_FLAGS ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS})
+qt5_use_modules(hawaii-terminal Widgets)
 target_link_libraries(hawaii-terminal ${VibeWidgets_LIBRARIES})
 
-install(FILES hawaii-terminal.desktop DESTINATION ${CMAKE_INSTALL_APPLICATIONSDIR})
-install(TARGETS hawaii-terminal DESTINATION ${CMAKE_INSTALL_FULL_BINDIR})
+install(FILES hawaii-terminal.desktop
+    DESTINATION ${CMAKE_INSTALL_APPLICATIONSDIR})
+install(TARGETS hawaii-terminal
+    DESTINATION ${CMAKE_INSTALL_BINDIR})
 
-install(DIRECTORY lib/kb-layouts/ DESTINATION ${KB_LAYOUT_DIR} FILES_MATCHING PATTERN "*.keytab" )
-install(DIRECTORY lib/color-schemes/ DESTINATION ${COLOR_SCHEMES_DIR} FILES_MATCHING PATTERN "*.*schem*")
+install(DIRECTORY lib/kb-layouts/
+    DESTINATION ${KB_LAYOUT_DIR} FILES_MATCHING PATTERN "*.keytab" )
+install(DIRECTORY lib/color-schemes/
+    DESTINATION ${COLOR_SCHEMES_DIR} FILES_MATCHING PATTERN "*.*schem*")

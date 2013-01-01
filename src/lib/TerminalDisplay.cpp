@@ -3041,4 +3041,4 @@ bool AutoScrollHandler::eventFilter(QObject* watched,QEvent* event)
     return false;
 }
 
-//#include "TerminalDisplay.moc"
+#include "moc_TerminalDisplay.cpp"

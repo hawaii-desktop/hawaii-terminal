@@ -291,4 +291,4 @@ void ScreenWindow::notifyOutputChanged()
     emit outputChanged(); 
 }
 
-//#include "ScreenWindow.moc"
+#include "moc_ScreenWindow.cpp"
