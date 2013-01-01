@@ -1,0 +1,22 @@
+[Desktop Entry]
+Type=Application
+Name=Terminal
+Comment=Use the command line
+TryExec=hawaii-terminal
+Exec=hawaii-terminal
+Icon=utilities-terminal
+Categories=Qt;Hawaii;Utility;TerminalEmulator;
+OnlyShowIn=Hawaii;
+Keywords=Run;
+Actions=New;
+
+[Desktop Action New]
+Name=New Terminal
+Exec=Terminal
+OnlyShowIn=Hawaii;
+
+
+# Translations
+Comment[it]=Usa la riga di comando
+Name[it]=Terminale
+Icon[it]=utilities-terminal
