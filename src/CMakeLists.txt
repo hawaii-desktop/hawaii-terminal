@@ -55,8 +55,6 @@ add_executable(hawaii-terminal ${SOURCES} ${UI_FILES})
 qt5_use_modules(hawaii-terminal Widgets)
 target_link_libraries(hawaii-terminal ${VibeWidgets_LIBRARIES})
 
-install(FILES hawaii-terminal.desktop
-    DESTINATION ${CMAKE_INSTALL_APPLICATIONSDIR})
 install(TARGETS hawaii-terminal
     DESTINATION ${CMAKE_INSTALL_BINDIR})
 
