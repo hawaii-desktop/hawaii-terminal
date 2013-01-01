@@ -53,7 +53,12 @@ find_package(Qt5Widgets)
 if(NOT Qt5Widgets_FOUND)
     message(FATAL_ERROR "Qt5Widgets module is required!")
 endif()
+find_package(Qt5LinguistTools REQUIRED)
+if(NOT Qt5LinguistTools_FOUND)
+    message(FATAL_ERROR "Qt5LinguistTools module is required!")
+endif()
 macro_log_feature(Qt5Widgets_FOUND "Qt5Widgets" "Support for Qt5Widgets" "http://qt-project.org" "")
+macro_log_feature(Qt5LinguistTools_FOUND "Qt5LinguistTools" "Support for Qt5LinguistTools" "http://qt-project.org" "")
 
 # Find Vibe libraries
 find_package(VibeWidgets REQUIRED)

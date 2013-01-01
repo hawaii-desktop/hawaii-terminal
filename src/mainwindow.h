@@ -29,6 +29,8 @@
 
 #include <QMainWindow>
 
+class QTranslator;
+
 class VSettings;
 
 namespace Ui
@@ -48,7 +50,10 @@ protected:
 
 private:
     Ui::MainWindow *ui;
+    QTranslator *m_translator;
     VSettings *m_settings;
+
+    void loadTranslations();
 
 private slots:
     void settingsChanged();

@@ -24,7 +24,12 @@
  * $END_LICENSE$
  ***************************************************************************/
 
+#include <QCoreApplication>
 #include <QDebug>
+#include <QLibraryInfo>
+#include <QStandardPaths>
+#include <QTranslator>
+
 #include <VibeCore/VSettings>
 #include <VAboutDialog>
 
@@ -35,8 +40,12 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , m_translator(0)
 {
     ui->setupUi(this);
+
+    // Load translations
+    loadTranslations();
 
     // Settings
     m_settings = new VSettings("org.hawaii.desktop");
@@ -82,10 +91,41 @@ void MainWindow::changeEvent(QEvent *e)
     switch (e->type()) {
         case QEvent::LanguageChange:
             ui->retranslateUi(this);
+            loadTranslations();
+            break;
+        case QEvent::LocaleChange:
+            loadTranslations();
             break;
         default:
             break;
     }
+}
+
+void MainWindow::loadTranslations()
+{
+    // Locale name
+    const QString locale = QLocale::system().name();
+
+    // Qt translations
+    QTranslator qtTranslator;
+    qtTranslator.load("qt_" + locale,
+                      QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    QCoreApplication::instance()->installTranslator(&qtTranslator);
+
+    // Remove translation of the previously loaded locale
+    if (m_translator) {
+        QCoreApplication::instance()->removeTranslator(m_translator);
+        delete m_translator;
+    }
+
+    // Load our translations for the current locale
+    m_translator = new QTranslator(this);
+    QString localeDir = QStandardPaths::locate(
+                            QStandardPaths::GenericDataLocation,
+                            QLatin1String("hawaii-terminal/translations"),
+                            QStandardPaths::LocateDirectory);
+    m_translator->load(locale, localeDir);
+    QCoreApplication::instance()->installTranslator(m_translator);
 }
 
 void MainWindow::settingsChanged()
