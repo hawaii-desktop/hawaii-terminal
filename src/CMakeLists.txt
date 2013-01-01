@@ -49,14 +49,21 @@ set(UI_SOURCES
     mainwindow.ui
 )
 
-qt5_wrap_ui(UI_FILES ${UI_SOURCES})
+set(QM_SOURCES
+    translations/it.ts
+)
 
-add_executable(hawaii-terminal ${SOURCES} ${UI_FILES})
+qt5_wrap_ui(UI_FILES ${UI_SOURCES})
+qt5_add_translation(QM_FILES ${QM_SOURCES})
+
+add_executable(hawaii-terminal ${SOURCES} ${UI_FILES} ${QM_FILES})
 qt5_use_modules(hawaii-terminal Widgets)
 target_link_libraries(hawaii-terminal ${VibeWidgets_LIBRARIES})
 
 install(TARGETS hawaii-terminal
     DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(FILES ${QM_FILES}
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/hawaii-terminal/translations)
 
 install(DIRECTORY lib/kb-layouts/
     DESTINATION ${KB_LAYOUT_DIR} FILES_MATCHING PATTERN "*.keytab" )
