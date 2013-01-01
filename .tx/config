@@ -1,0 +1,14 @@
+[main]
+host = https://www.transifex.com
+
+[hawaii.terminal]
+type = QT
+source_lang = en
+source_file = src/translations/template.ts
+file_filter = src/translations/<lang>.ts
+
+[hawaii.terminal-desktop-file]
+type = DESKTOP
+source_lang = en
+source_file = data/hawaii-terminal.desktop
+file_filter = data/hawaii-terminal_<lang>.desktop
