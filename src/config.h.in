@@ -24,29 +24,9 @@
  * $END_LICENSE$
  ***************************************************************************/
 
-#include <QtGui/QGuiApplication>
-#include <QtQuick/QQuickView>
+#ifndef TERMINAL_CONFIG_H
+#define TERMINAL_CONFIG_H
 
-#include "config.h"
-#include "register_qml_types.h"
-#include "terminal_item.h"
-#include "yat_pty.h"
+#define TERMINAL_VERSION "@TERMINAL_VERSION_STRING@"
 
-int main(int argc, char *argv[])
-{
-    QGuiApplication app(argc, argv);
-    app.setApplicationName("Terminal");
-    app.setApplicationVersion(TERMINAL_VERSION);
-    app.setOrganizationDomain("maui-project.org");
-    app.setOrganizationName("Hawaii");
-
-    register_qml_types();
-
-    QQuickView view(QUrl("qrc:/qml/yat_declarative/main.qml"));
-    qobject_cast<TerminalItem *>(view.rootObject())->createScreen(view.engine());
-
-    view.setResizeMode(QQuickView::SizeRootObjectToView);
-    view.show();
-
-    return app.exec();
-}
+#endif // TERMINAL_CONFIG_H

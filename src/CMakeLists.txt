@@ -3,6 +3,11 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative
 )
 
+configure_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/config.h.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/config.h"
+    IMMEDIATE @ONLY)
+
 set(YAT_BACKEND_SOURCES
     ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/yat_pty.cpp
     ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/text.cpp
