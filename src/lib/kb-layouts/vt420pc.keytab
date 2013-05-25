@@ -166,3 +166,13 @@ key ScrollLock     : scrollLock
 #----------------------------------------------------------
 
 # Following other strings as emitted by konsole.
+
+# See http://www.cs.tut.fi/~jkorpela/chars/c0.html
+key C +Control : "\x03"
+key D +Control : "\x04"
+key G +Control : "\x07"
+key H +Control : "\x08"
+key I +Control : "\x09"
+key J +Control : "\x0A"
+key L +Control : "\x0C"
+key M +Control : "\x0D"
