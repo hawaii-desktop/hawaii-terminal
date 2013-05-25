@@ -1,71 +1,47 @@
-include_directories(${VibeWidgets_INCLUDE_DIRS})
+include_directories(
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative
+)
 
-include(CheckFunctionExists)
-check_function_exists(updwtmpx HAVE_UPDWTMPX)
+set(YAT_BACKEND_SOURCES
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/yat_pty.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/text.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/parser.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/screen.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/line.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/color_palette.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/text_style.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/update_action.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/screen_data.cpp
+)
 
-set(KB_LAYOUT_DIR ${CMAKE_INSTALL_FULL_DATADIR}/terminal/kb-layouts)
-message(STATUS "Keyboard layouts will be installed in: ${KB_LAYOUT_DIR}")
+set(YAT_DECLARATIVE_SOURCES
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/terminal_item.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/register_qml_types.cpp
+)
 
-set(COLOR_SCHEMES_DIR ${CMAKE_INSTALL_FULL_DATADIR}/terminal/color-schemes)
-message(STATUS "Color schemes will be insatlled in: ${COLOR_SCHEMES_DIR}")
-
-configure_file(config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h)
-
-set(TERMWIDGET_SOURCES
-    lib/BlockArray.cpp
-    lib/ColorScheme.cpp
-    lib/Emulation.cpp
-    lib/Filter.cpp
-    lib/History.cpp
-    lib/KeyboardTranslator.cpp
-    lib/konsole_wcwidth.cpp
-    lib/kprocess.cpp
-    lib/kpty.cpp
-    lib/kptydevice.cpp
-    lib/kptyprocess.cpp
-    lib/Pty.cpp
-    lib/qtermwidget.cpp
-    lib/Screen.cpp
-    lib/ScreenWindow.cpp
-    lib/Session.cpp
-    lib/ShellCommand.cpp
-    lib/TerminalCharacterDecoder.cpp
-    lib/TerminalDisplay.cpp
-    lib/tools.cpp
-    lib/Vt102Emulation.cpp
+set(YAT_DECLARATIVE_RESOURCES
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/qml_sources.qrc
 )
 
 set(SOURCES
-    mainwindow.cpp
     main.cpp
-    ${TERMWIDGET_SOURCES}
-)
-
-set(HEADERS
-    mainwindow.h
-)
-
-set(UI_SOURCES
-    mainwindow.ui
+    ${YAT_BACKEND_SOURCES}
+    ${YAT_DECLARATIVE_SOURCES}
 )
 
 set(QM_SOURCES
     translations/it.ts
 )
 
-qt5_wrap_ui(UI_FILES ${UI_SOURCES})
-qt5_add_translation(QM_FILES ${QM_SOURCES})
+#qt5_add_translation(QM_FILES ${QM_SOURCES})
+qt5_add_resources(RESOURCES ${YAT_DECLARATIVE_RESOURCES})
 
-add_executable(hawaii-terminal ${SOURCES} ${UI_FILES} ${QM_FILES})
-qt5_use_modules(hawaii-terminal Widgets)
-target_link_libraries(hawaii-terminal ${VibeWidgets_LIBRARIES})
+add_executable(hawaii-terminal ${SOURCES} ${RESOURCES})
+target_link_libraries(hawaii-terminal util)
+qt5_use_modules(hawaii-terminal Gui Quick)
 
 install(TARGETS hawaii-terminal
     DESTINATION ${CMAKE_INSTALL_BINDIR})
-install(FILES ${QM_FILES}
-    DESTINATION ${CMAKE_INSTALL_DATADIR}/hawaii-terminal/translations)
-
-install(DIRECTORY lib/kb-layouts/
-    DESTINATION ${KB_LAYOUT_DIR} FILES_MATCHING PATTERN "*.keytab" )
-install(DIRECTORY lib/color-schemes/
-    DESTINATION ${COLOR_SCHEMES_DIR} FILES_MATCHING PATTERN "*.*schem*")
+#install(FILES ${QM_FILES}
+#    DESTINATION ${CMAKE_INSTALL_DATADIR}/hawaii-terminal/translations)

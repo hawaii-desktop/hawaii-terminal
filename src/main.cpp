@@ -24,21 +24,28 @@
  * $END_LICENSE$
  ***************************************************************************/
 
-#include <QApplication>
+#include <QtGui/QGuiApplication>
+#include <QtQuick/QQuickView>
 
-#include "mainwindow.h"
+#include "register_qml_types.h"
+#include "terminal_item.h"
+#include "yat_pty.h"
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
+    QGuiApplication app(argc, argv);
     app.setApplicationName("Terminal");
-    app.setApplicationVersion("0.0.0");
+    app.setApplicationVersion("0.1.90");
     app.setOrganizationDomain("maui-project.org");
     app.setOrganizationName("Hawaii");
-    app.setWindowIcon(QIcon::fromTheme("utilities-terminal"));
 
-    MainWindow *mainWindow = new MainWindow();
-    mainWindow->show();
+    register_qml_types();
+
+    QQuickView view(QUrl("qrc:/qml/yat_declarative/main.qml"));
+    qobject_cast<TerminalItem *>(view.rootObject())->createScreen(view.engine());
+
+    view.setResizeMode(QQuickView::SizeRootObjectToView);
+    view.show();
 
     return app.exec();
 }

@@ -49,18 +49,12 @@ if(CMAKE_BUILD_TYPE MATCHES "^[Rr]elease$")
 endif()
 
 # Find Qt5 libraries
-find_package(Qt5Widgets REQUIRED)
-find_package(Qt5LinguistTools REQUIRED)
-macro_log_feature(Qt5Widgets_FOUND "Qt5Widgets" "Support for Qt5Widgets" "http://qt-project.org" "")
-macro_log_feature(Qt5LinguistTools_FOUND "Qt5LinguistTools" "Support for Qt5LinguistTools" "http://qt-project.org" "")
-
-# Find Vibe libraries
-find_package(VibeCore REQUIRED)
-find_package(VibeGui REQUIRED)
-find_package(VibeWidgets REQUIRED)
-macro_log_feature(VibeCore_FOUND "VibeCore" "Support for VibeCore" "http://www.maui-project.org" "")
-macro_log_feature(VibeGui_FOUND "VibeGui" "Support for VibeGui" "http://www.maui-project.org" "")
-macro_log_feature(VibeWidgets_FOUND "VibeWidgets" "Support for VibeWidgets" "http://www.maui-project.org" "")
+find_package(Qt5Gui REQUIRED)
+find_package(Qt5Quick REQUIRED)
+#find_package(Qt5LinguistTools REQUIRED)
+macro_log_feature(Qt5Quick_FOUND "Qt5Quick" "Support for Qt5Quick" "http://qt-project.org" "")
+macro_log_feature(Qt5Gui_FOUND "Qt5Gui" "Support for Qt5Gui" "http://qt-project.org" "")
+#macro_log_feature(Qt5LinguistTools_FOUND "Qt5LinguistTools" "Support for Qt5LinguistTools" "http://qt-project.org" "")
 
 # Subdirectories
 add_subdirectory(data)
