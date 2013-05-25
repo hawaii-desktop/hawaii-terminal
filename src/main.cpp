@@ -25,6 +25,8 @@
  ***************************************************************************/
 
 #include <QtGui/QGuiApplication>
+#include <QtQml/QQmlEngine>
+#include <QtQml/QQmlComponent>
 #include <QtQuick/QQuickView>
 
 #include "config.h"
@@ -42,11 +44,21 @@ int main(int argc, char *argv[])
 
     register_qml_types();
 
-    QQuickView view(QUrl("qrc:/qml/yat_declarative/main.qml"));
-    qobject_cast<TerminalItem *>(view.rootObject())->createScreen(view.engine());
+    QQmlEngine engine;
+    QQmlComponent component(&engine);
+    component.loadUrl(QUrl("qrc:/qml/main.qml"));
+    if (!component.isReady()) {
+        qWarning("%s", qPrintable(component.errorString()));
+        return 1;
+    }
+    QObject *topLevel = component.create();
+    QQuickWindow *window = qobject_cast<QQuickWindow *>(topLevel);
+    if (!window) {
+        qWarning("Error: Your root item has to be a Window.");
+        return 1;
+    }
 
-    view.setResizeMode(QQuickView::SizeRootObjectToView);
-    view.show();
-
+    QObject::connect(&engine, SIGNAL(quit()), &app, SLOT(quit()));
+    window->show();
     return app.exec();
 }

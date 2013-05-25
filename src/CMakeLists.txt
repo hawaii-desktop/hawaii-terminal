@@ -25,10 +25,6 @@ set(YAT_DECLARATIVE_SOURCES
     ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/register_qml_types.cpp
 )
 
-set(YAT_DECLARATIVE_RESOURCES
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/qml_sources.qrc
-)
-
 set(SOURCES
     main.cpp
     ${YAT_BACKEND_SOURCES}
@@ -39,8 +35,13 @@ set(QM_SOURCES
     translations/it.ts
 )
 
+set(QRC_SOURCES
+#    ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/qml_sources.qrc
+    terminal.qrc
+)
+
 #qt5_add_translation(QM_FILES ${QM_SOURCES})
-qt5_add_resources(RESOURCES ${YAT_DECLARATIVE_RESOURCES})
+qt5_add_resources(RESOURCES ${QRC_SOURCES})
 
 add_executable(hawaii-terminal ${SOURCES} ${RESOURCES})
 target_link_libraries(hawaii-terminal util)
