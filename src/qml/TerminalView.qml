@@ -4,10 +4,8 @@ import org.yat 1.0
 
 TerminalItem {
     id: terminal
-    width: 800
-    height: 600
-    property font font
 
+    property font font
     property real fontWidth
     property real fontHeight
 
@@ -20,12 +18,10 @@ TerminalItem {
             terminalScreen = null;
             return;
         }
+
         terminalScreen = terminalScreenComponent.createObject(terminal,
                                                               {
                                                                   "screen": screen,
                                                               });
     }
-
-
-
 }

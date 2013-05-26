@@ -27,6 +27,7 @@ set(YAT_DECLARATIVE_SOURCES
 
 set(SOURCES
     main.cpp
+    windowcontroller.cpp
     ${YAT_BACKEND_SOURCES}
     ${YAT_DECLARATIVE_SOURCES}
 )
@@ -36,8 +37,8 @@ set(QM_SOURCES
 )
 
 set(QRC_SOURCES
-#    ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/qml_sources.qrc
-    terminal.qrc
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/qml_sources.qrc
+    ${CMAKE_CURRENT_SOURCE_DIR}/qml/qml.qrc
 )
 
 #qt5_add_translation(QM_FILES ${QM_SOURCES})

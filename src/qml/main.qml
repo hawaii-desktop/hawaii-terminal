@@ -25,11 +25,22 @@
  ***************************************************************************/
 
 import QtQuick 2.0
+import QtQuick.Window 2.0
 import QtQuick.Controls 1.0
 
 ApplicationWindow {
+    id: root
+    width: 640
+    height: 480
+
+    signal viewCreated(variant view)
+
+onViewCreated: console.log(view)
+
     TerminalView {
         id: terminal
         anchors.fill: parent
+
+        Component.onCompleted: root.viewCreated(terminal)
     }
 }

@@ -24,37 +24,28 @@
  * $END_LICENSE$
  ***************************************************************************/
 
-#include <QtGui/QGuiApplication>
-#include <QtQuick/QQuickView>
+#ifndef WINDOWCONTROLLER_H
+#define WINDOWCONTROLLER_H
 
-#include "config.h"
-#include "register_qml_types.h"
-#if 0
-#include "windowcontroller.h"
-#else
-#include "terminal_item.h"
-#endif
+#include <QtQml/QQmlEngine>
+#include <QtQml/QQmlComponent>
+#include <QtQuick/QQuickWindow>
 
-int main(int argc, char *argv[])
+class TerminalItem;
+
+class WindowController : public QObject
 {
-    QGuiApplication app(argc, argv);
-    app.setApplicationName("Terminal");
-    app.setApplicationVersion(TERMINAL_VERSION);
-    app.setOrganizationDomain("maui-project.org");
-    app.setOrganizationName("Hawaii");
+    Q_OBJECT
+public:
+    WindowController(QObject *parent = 0);
 
-    register_qml_types();
+    QQuickWindow *create();
 
-#if 0
-    WindowController *controller = new WindowController();
-    controller->create();
-#else
-    QQuickView view(QUrl("qrc:/qml/yat_declarative/main.qml"));
-    qobject_cast<TerminalItem *>(view.rootObject())->createScreen(view.engine());
+private:
+    QQmlEngine *m_engine;
 
-    view.setResizeMode(QQuickView::SizeRootObjectToView);
-    view.show();
-#endif
+private slots:
+    void viewCreated(const QVariant &item);
+};
 
-    return app.exec();
-}
+#endif // WINDOWCONTROLLER_H
