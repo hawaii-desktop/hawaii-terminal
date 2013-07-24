@@ -17,8 +17,8 @@ set(TERMINAL_VERSION_STRING "${TERMINAL_VERSION_MAJOR}.${TERMINAL_VERSION_MINOR}
 # Installation directories
 include(GNUInstallDirs)
 
-# Log features
-include(MacroLogFeature)
+# Macro to print feature summary
+include(FeatureSummary)
 
 # Add custom uninstall target
 configure_file(
@@ -52,13 +52,10 @@ endif()
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Quick REQUIRED)
 #find_package(Qt5LinguistTools REQUIRED)
-macro_log_feature(Qt5Quick_FOUND "Qt5Quick" "Support for Qt5Quick" "http://qt-project.org" "")
-macro_log_feature(Qt5Gui_FOUND "Qt5Gui" "Support for Qt5Gui" "http://qt-project.org" "")
-#macro_log_feature(Qt5LinguistTools_FOUND "Qt5LinguistTools" "Support for Qt5LinguistTools" "http://qt-project.org" "")
 
 # Subdirectories
 add_subdirectory(data)
 add_subdirectory(src)
 
-# Display featute log
-macro_display_feature_log()
+# Display featute summary
+feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
