@@ -15,7 +15,7 @@ set(TERMINAL_VERSION_PATCH 90)
 set(TERMINAL_VERSION_STRING "${TERMINAL_VERSION_MAJOR}.${TERMINAL_VERSION_MINOR}.${TERMINAL_VERSION_PATCH}")
 
 # Installation directories
-include(HawaiiInstallDirs)
+include(GNUInstallDirs)
 
 # Log features
 include(MacroLogFeature)
