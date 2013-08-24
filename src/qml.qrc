@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/TerminalLine.qml</file>
+        <file>qml/TerminalScreen.qml</file>
+        <file>qml/TerminalText.qml</file>
+        <file>qml/HighlightArea.qml</file>
+    </qresource>
+</RCC>

@@ -24,23 +24,20 @@
  * $END_LICENSE$
  ***************************************************************************/
 
-import QtQuick 2.0
-import QtQuick.Window 2.0
+import QtQuick 2.1
+import QtQuick.Window 2.1
 import QtQuick.Controls 1.0
 
 ApplicationWindow {
     id: root
+    title: terminal.screen.title ? terminal.screen.title : qsTr("Terminal")
     width: 640
     height: 480
+    visible: true
 
-    signal viewCreated(variant view)
-
-onViewCreated: console.log(view)
-
-    TerminalView {
+    TerminalScreen {
         id: terminal
-        anchors.fill: parent
-
-        Component.onCompleted: root.viewCreated(terminal)
+        width: root.width
+        height: root.height
     }
 }

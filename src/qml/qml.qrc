@@ -1,8 +1,0 @@
-<RCC>
-    <qresource prefix="/qml">
-        <file>main.qml</file>
-    </qresource>
-    <qresource prefix="/qml/yat_declarative">
-        <file>TerminalView.qml</file>
-    </qresource>
-</RCC>

@@ -9,25 +9,26 @@ configure_file(
     IMMEDIATE @ONLY)
 
 set(YAT_BACKEND_SOURCES
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/yat_pty.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/text.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/color_palette.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/controll_chars.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/line.cpp
     ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/parser.cpp
     ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/screen.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/line.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/color_palette.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/screen_data.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/text.cpp
     ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/text_style.cpp
     ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/update_action.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/screen_data.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/yat_pty.cpp
 )
 
 set(YAT_DECLARATIVE_SOURCES
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/terminal_item.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/object_destruct_item.cpp
     ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/register_qml_types.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/terminal_screen.cpp
 )
 
 set(SOURCES
     main.cpp
-    windowcontroller.cpp
     ${YAT_BACKEND_SOURCES}
     ${YAT_DECLARATIVE_SOURCES}
 )
@@ -37,8 +38,7 @@ set(QM_SOURCES
 )
 
 set(QRC_SOURCES
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/qml_sources.qrc
-    ${CMAKE_CURRENT_SOURCE_DIR}/qml/qml.qrc
+    ${CMAKE_CURRENT_SOURCE_DIR}/qml.qrc
 )
 
 #qt5_add_translation(QM_FILES ${QM_SOURCES})

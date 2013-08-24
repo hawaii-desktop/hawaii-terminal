@@ -25,15 +25,12 @@
  ***************************************************************************/
 
 #include <QtGui/QGuiApplication>
-#include <QtQuick/QQuickView>
+#include <QtQml/QQmlApplicationEngine>
 
 #include "config.h"
 #include "register_qml_types.h"
-#if 0
-#include "windowcontroller.h"
-#else
-#include "terminal_item.h"
-#endif
+#include "terminal_screen.h"
+#include "yat_pty.h"
 
 int main(int argc, char *argv[])
 {
@@ -45,16 +42,6 @@ int main(int argc, char *argv[])
 
     register_qml_types();
 
-#if 0
-    WindowController *controller = new WindowController();
-    controller->create();
-#else
-    QQuickView view(QUrl("qrc:/qml/yat_declarative/main.qml"));
-    qobject_cast<TerminalItem *>(view.rootObject())->createScreen(view.engine());
-
-    view.setResizeMode(QQuickView::SizeRootObjectToView);
-    view.show();
-#endif
-
+    QQmlApplicationEngine engine(QUrl("qrc:/qml/main.qml"));
     return app.exec();
 }
