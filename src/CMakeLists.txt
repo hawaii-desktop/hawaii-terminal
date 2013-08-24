@@ -46,7 +46,7 @@ qt5_add_resources(RESOURCES ${QRC_SOURCES})
 
 add_executable(hawaii-terminal ${SOURCES} ${RESOURCES})
 target_link_libraries(hawaii-terminal util)
-qt5_use_modules(hawaii-terminal Gui Quick)
+qt5_use_modules(hawaii-terminal Widgets Quick Qml)
 
 install(TARGETS hawaii-terminal
     DESTINATION ${CMAKE_INSTALL_BINDIR})

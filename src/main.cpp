@@ -24,7 +24,7 @@
  * $END_LICENSE$
  ***************************************************************************/
 
-#include <QtGui/QGuiApplication>
+#include <QtWidgets/QApplication>
 #include <QtQml/QQmlApplicationEngine>
 
 #include "config.h"
@@ -34,7 +34,7 @@
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
     app.setApplicationName("Terminal");
     app.setApplicationVersion(TERMINAL_VERSION);
     app.setOrganizationDomain("maui-project.org");

@@ -49,7 +49,7 @@ if(CMAKE_BUILD_TYPE MATCHES "^[Rr]elease$")
 endif()
 
 # Find Qt5 libraries
-find_package(Qt5 5.1.0 REQUIRED COMPONENTS Qml Quick)
+find_package(Qt5 5.1.0 REQUIRED COMPONENTS Widgets Qml Quick)
 
 # Subdirectories
 add_subdirectory(data)
