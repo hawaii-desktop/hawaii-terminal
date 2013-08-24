@@ -33,11 +33,13 @@ ApplicationWindow {
     title: terminal.screen.title ? terminal.screen.title : qsTr("Terminal")
     width: 640
     height: 480
+    color: "transparent"
     visible: true
 
     TerminalScreen {
         id: terminal
         width: root.width
         height: root.height
+        opacity: 0.9
     }
 }
