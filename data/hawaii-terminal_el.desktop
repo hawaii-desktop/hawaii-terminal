@@ -11,6 +11,6 @@ StartupNotify=true
 
 
 # Translations
-Comment[it]=Usa la riga di comando
-Name[it]=Terminale
-Icon[it]=utilities-terminal
+Comment[el]=Χρήση γραμμής εντολών
+Name[el]=Τερματικό
+Icon[el]=utilities-terminal

@@ -11,6 +11,5 @@ StartupNotify=true
 
 
 # Translations
-Comment[it]=Usa la riga di comando
-Name[it]=Terminale
-Icon[it]=utilities-terminal
+Comment[hu]=A parancssor használata
+Name[hu]=Terminál

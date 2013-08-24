@@ -11,6 +11,6 @@ StartupNotify=true
 
 
 # Translations
-Comment[it]=Usa la riga di comando
-Name[it]=Terminale
-Icon[it]=utilities-terminal
+Comment[sk]=Použiť príkazový riadok
+Name[sk]=Terminál
+Icon[sk]=utilities-terminal

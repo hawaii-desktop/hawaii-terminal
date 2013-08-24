@@ -11,6 +11,6 @@ StartupNotify=true
 
 
 # Translations
-Comment[it]=Usa la riga di comando
-Name[it]=Terminale
-Icon[it]=utilities-terminal
+Comment[pl]=Używaj wiersza poleceń
+Name[pl]=Terminal
+Icon[pl]=utilities-terminal
