@@ -26,6 +26,7 @@
 
 #include <QtWidgets/QApplication>
 #include <QtQml/QQmlApplicationEngine>
+#include <QtQuick/QQuickWindow>
 
 #include "config.h"
 #include "register_qml_types.h"
@@ -41,6 +42,8 @@ int main(int argc, char *argv[])
     app.setOrganizationName("Hawaii");
 
     register_qml_types();
+
+    QQuickWindow::setDefaultAlphaBuffer(true);
 
     QQmlApplicationEngine engine(QUrl("qrc:/qml/main.qml"));
     return app.exec();
