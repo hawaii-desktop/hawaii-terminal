@@ -5,7 +5,7 @@ host = https://www.transifex.com
 type = DESKTOP
 source_lang = en
 source_file = data/hawaii-terminal.desktop.in
-file_filter = data/hawaii-terminal_<lang>.desktop
+file_filter = data/translations/hawaii-terminal_<lang>.desktop
 
 [hawaii.terminal]
 type = QT
