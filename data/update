@@ -5,13 +5,14 @@ import os, re
 base_filename = "hawaii-terminal"
 translations = {
     "Name": [],
+    "GenericName": [],
     "Comment": []
 }
 
 for filename in os.listdir("translations"):
     f = open(os.path.join("translations", filename), "r")
     for line in f.readlines():
-        m = re.match(r'^(Name|Comment)\[.*\]\s*=(.+)', line)
+        m = re.match(r'^(Name|GenericName|Comment)\[.*\]\s*=(.+)', line)
         if not m:
             continue
         translations[m.group(1)].append(line)
@@ -21,7 +22,7 @@ contents = ""
 f = open("%s.desktop.in" % base_filename, "r")
 for line in f.readlines():
     contents += line
-    m = re.match('^(Name|Comment)', line)
+    m = re.match('^(Name|GenericName|Comment)', line)
     if not m:
         continue
     for entry in translations[m.group(1)]:
