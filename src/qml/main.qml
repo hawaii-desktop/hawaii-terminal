@@ -29,17 +29,18 @@ import QtQuick.Window 2.1
 import QtQuick.Controls 1.0
 
 ApplicationWindow {
-    id: root
-    title: terminal.screen.title ? terminal.screen.title : qsTr("Terminal")
+    id: terminalWindow
+    title: terminalWindow.visible && terminal.screen.title ? terminal.screen.title : qsTr("Terminal")
     width: 640
     height: 480
-    color: "transparent"
-    visible: true
+    color: terminal.screen.defaultBackgroundColor
+    //color: "transparent"
 
     TerminalScreen {
         id: terminal
-        width: root.width
-        height: root.height
+        anchors.fill: parent
         opacity: 0.9
+
+        Component.onCompleted: terminalWindow.visible = true
     }
 }

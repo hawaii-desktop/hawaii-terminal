@@ -10,8 +10,23 @@ TerminalScreen {
     property real fontHeight: fontMetricText.paintedHeight
 
     property var lineComponent : Qt.createComponent("TerminalLine.qml")
+    property var textComponent : Qt.createComponent("TerminalText.qml")
+    property var cursorComponent : Qt.createComponent("TerminalCursor.qml")
 
-    font.family: "courier"
+    font.family: "menlo"
+    focus: true
+
+    onActiveFocusChanged: {
+        if (activeFocus) {
+            Qt.inputMethod.show();
+        }
+    }
+
+    Keys.onPressed: {
+        if (event.text === "?") {
+            terminal.screen.printScreen()
+        }
+    }
 
     Text {
         id: fontMetricText
@@ -21,10 +36,32 @@ TerminalScreen {
         textFormat: Text.PlainText
     }
 
-    Rectangle {
-        id: background
-        anchors.fill: parent
-        color: "black"
+    Flickable {
+        id: flickable
+        anchors.top: parent.top
+        anchors.left: parent.left
+        contentWidth: width
+        contentHeight: textContainer.height
+        interactive: true
+        flickableDirection: Flickable.VerticalFlick
+        contentY: ((screen.contentHeight - screen.height) * screenItem.fontHeight)
+
+        Item {
+            id: textContainer
+            width: parent.width
+            height: screen.contentHeight * screenItem.fontHeight
+            Rectangle {
+                id: background
+                anchors.fill: parent
+                color: "black"
+            }
+        }
+        onContentYChanged: {
+            if (!atYEnd) {
+                var top_line = Math.floor(Math.max(contentY,0) / screenItem.fontHeight);
+                screen.ensureVisiblePages(top_line);
+            }
+        }
     }
 
     Connections {
@@ -36,23 +73,43 @@ TerminalScreen {
             flashAnimation.start()
         }
 
-        onCursorPositionChanged: {
-            cursor.x = x * fontWidth;
-            cursor.y = y * fontHeight;
-        }
-
         onReset: {
             resetScreenItems();
         }
 
-        onLineCreated: {
-            var lineVariable = lineComponent.createObject(screenItem,
+        onTextCreated: {
+            var textSegment = textComponent.createObject(screenItem,
                 {
-                    "objectHandle" : line,
-                    "font": screenItem.font,
+                    "parent" : background,
+                    "objectHandle" : text,
+                    "font" : screenItem.font,
                     "fontWidth" : screenItem.fontWidth,
                     "fontHeight" : screenItem.fontHeight,
                 })
+        }
+
+        onCursorCreated: {
+            if (cursorComponent.status != Component.Ready) {
+                console.log(cursorComponent.errorString());
+                return;
+            }
+            var cursorVariable = cursorComponent.createObject(screenItem,
+                {
+                    "parent" : textContainer,
+                    "objectHandle" : cursor,
+                    "fontWidth" : screenItem.fontWidth,
+                    "fontHeight" : screenItem.fontHeight,
+                })
+        }
+
+        onRequestHeightChange: {
+            terminalWindow.height = newHeight * screenItem.fontHeight;
+            terminalWindow.contentItem.height = newHeight * screenItem.fontHeight;
+        }
+
+        onRequestWidthChange: {
+            terminalWindow.width = newWidth * screenItem.fontWidth;
+            terminalWindow.contentItem.width = newWidth * screenItem.fontWidth;
         }
     }
 
@@ -75,6 +132,7 @@ TerminalScreen {
     function setTerminalWidth() {
         if (fontWidth > 0) {
             var pty_width = Math.floor(width / fontWidth);
+            flickable.width = pty_width * fontWidth;
             screen.width = pty_width;
         }
     }
@@ -82,19 +140,8 @@ TerminalScreen {
     function setTerminalHeight() {
         if (fontHeight > 0) {
             var pty_height = Math.floor(height / fontHeight);
+            flickable.height = pty_height * fontHeight;
             screen.height = pty_height;
-        }
-    }
-
-
-    Item {
-        id: keyHandler
-        focus: true
-        Keys.onPressed: {
-            terminal.screen.sendKey(event.text, event.key, event.modifiers);
-            if (event.text === "?") {
-                terminal.screen.printScreen()
-            }
         }
     }
 
@@ -109,16 +156,8 @@ TerminalScreen {
     }
 
     Rectangle {
-        id: cursor
-        width: fontWidth
-        height: fontHeight
-        x: 0
-        y: 0
-        color: "grey"
-    }
-
-    Rectangle {
         id: flash
+        z: 1.2
         anchors.fill: parent
         color: "grey"
         opacity: 0
