@@ -20,6 +20,18 @@ More information about building Qt 5 from can be found here:
 
 Qt 5 binaries can be downloaded from http://qt-project.org/downloads
 
+## Fetch git submodules
+
+Terminal uses yat, a terminal emulator written in QML and C++.
+You can find it [here](https://github.com/jorgen/yat).
+
+The first time you build Terminal, make sure the yat submodule is fetched.
+Type this from the Terminal source code root:
+
+```sh
+git submodule update --init
+```
+
 ## Build
 
 Building Terminal is a piece of cake.
