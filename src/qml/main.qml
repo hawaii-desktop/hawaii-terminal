@@ -34,12 +34,10 @@ ApplicationWindow {
     width: 640
     height: 480
     color: terminal.screen.defaultBackgroundColor
-    //color: "transparent"
 
     TerminalScreen {
         id: terminal
         anchors.fill: parent
-        opacity: 0.9
 
         Component.onCompleted: terminalWindow.visible = true
     }
