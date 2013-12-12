@@ -36,7 +36,7 @@ TerminalScreen {
     property var textComponent : Qt.createComponent("TerminalText.qml")
     property var cursorComponent : Qt.createComponent("TerminalCursor.qml")
 
-    font.family: "menlo"
+    font.family: "monospace"
     focus: true
 
     onActiveFocusChanged: {
