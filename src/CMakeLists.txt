@@ -1,4 +1,5 @@
 include_directories(
+    ${Qt5Quick_PRIVATE_INCLUDE_DIRS}
     ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend
     ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative
 )
@@ -27,6 +28,7 @@ set(YAT_DECLARATIVE_SOURCES
     ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/terminal_screen.cpp
     ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/object_destruct_item.cpp
     ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/register_qml_types.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/mono_text.cpp
 )
 
 set(SOURCES
