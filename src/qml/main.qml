@@ -27,18 +27,17 @@
 import QtQuick 2.1
 import QtQuick.Window 2.1
 import QtQuick.Controls 1.0
+import Yat 1.0 as Yat
 
 ApplicationWindow {
     id: terminalWindow
-    title: terminalWindow.visible && terminal.screen.title ? terminal.screen.title : qsTr("Terminal")
+    title: qsTr("Terminal")
     width: 640
     height: 480
-    color: terminal.screen.defaultBackgroundColor
 
-    TerminalScreen {
-        id: terminal
-        anchors.fill: parent
+    Component {
+        id: terminalScreenComponent
 
-        Component.onCompleted: terminalWindow.visible = true
+        Yat.Screen {}
     }
 }

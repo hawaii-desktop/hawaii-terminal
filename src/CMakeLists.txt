@@ -1,40 +1,10 @@
-include_directories(
-    ${Qt5Quick_PRIVATE_INCLUDE_DIRS}
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative
-)
-
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/config.h.in"
     "${CMAKE_CURRENT_BINARY_DIR}/config.h"
     IMMEDIATE @ONLY)
 
-set(YAT_BACKEND_SOURCES
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/yat_pty.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/text.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/controll_chars.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/parser.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/screen.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/block.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/color_palette.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/text_style.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/screen_data.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/cursor.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/nrc_text_codec.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/backend/scrollback.cpp
-)
-
-set(YAT_DECLARATIVE_SOURCES
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/terminal_screen.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/object_destruct_item.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/register_qml_types.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/yat/yat_declarative/mono_text.cpp
-)
-
 set(SOURCES
     main.cpp
-    ${YAT_BACKEND_SOURCES}
-    ${YAT_DECLARATIVE_SOURCES}
 )
 
 set(QM_SOURCES

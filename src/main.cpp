@@ -29,9 +29,6 @@
 #include <QtQuick/QQuickWindow>
 
 #include "config.h"
-#include "register_qml_types.h"
-#include "terminal_screen.h"
-#include "yat_pty.h"
 
 int main(int argc, char *argv[])
 {
@@ -40,8 +37,6 @@ int main(int argc, char *argv[])
     app.setApplicationVersion(TERMINAL_VERSION);
     app.setOrganizationDomain("maui-project.org");
     app.setOrganizationName("Hawaii");
-
-    register_qml_types();
 
     QQuickWindow::setDefaultAlphaBuffer(true);
 
