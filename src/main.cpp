@@ -1,7 +1,7 @@
 /****************************************************************************
  * This file is part of Terminal.
  *
- * Copyright (C) 2010-2013 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+ * Copyright (C) 2010-2015 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
  *
  * Author(s):
  *    Pier Luigi Fiorini
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     app.setApplicationName("Terminal");
     app.setApplicationVersion(TERMINAL_VERSION);
-    app.setOrganizationDomain("maui-project.org");
+    app.setOrganizationDomain("hawaiios.org");
     app.setOrganizationName("Hawaii");
 
     QQuickWindow::setDefaultAlphaBuffer(true);

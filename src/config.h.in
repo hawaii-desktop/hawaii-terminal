@@ -1,7 +1,7 @@
 /****************************************************************************
  * This file is part of Terminal.
  *
- * Copyright (C) 2010-2013 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+ * Copyright (C) 2010-2015 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
  *
  * Author(s):
  *    Pier Luigi Fiorini
@@ -27,6 +27,6 @@
 #ifndef TERMINAL_CONFIG_H
 #define TERMINAL_CONFIG_H
 
-#define TERMINAL_VERSION "@TERMINAL_VERSION_STRING@"
+#define TERMINAL_VERSION "@PROJECT_VERSION@"
 
 #endif // TERMINAL_CONFIG_H
