@@ -1,8 +1,7 @@
 /****************************************************************************
  * This file is part of Terminal.
  *
- * Copyright (C) 2013 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
- * Copyright (C) 2013 Jørgen Lind <jorgen.lind@gmail.com>
+ * Copyright (C) 2013-2015 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
  *
  * Author(s):
  *    Pier Luigi Fiorini
@@ -28,85 +27,49 @@
 import QtQuick 2.1
 import QtQuick.Window 2.1
 import QtQuick.Controls 1.1
-import Yat 1.0 as Yat
 
 ApplicationWindow {
     id: terminalWindow
     title: qsTr("Terminal")
-    minimumWidth: 640
-    minimumHeight: 480
+    minimumWidth: 800
+    minimumHeight: 600
+    visible: true
 
-    Action {
-        id: newTabAction
-        shortcut: "Ctrl+Shift+T"
-        onTriggered: tabView.addTerminalView()
+    TerminalSettings {
+        id: settings
     }
 
-    Action {
-        id: nextTabAction
-        shortcut: "Ctrl+Alt+Right"
-        onTriggered: tabView.currentIndex = (tabView.currentIndex + 1) % tabView.count
-    }
-
-    Action {
-        id: previousTabAction
-        shortcut: "Ctrl+Alt+Left"
-        onTriggered: {
-            if (tabView.currentIndex > 0)
-                tabView.currentIndex--;
-            else
-                tabView.currentIndex = tabView.count - 1;
-        }
+    TerminalComponent {
+        id: terminalComponent
     }
 
     TabView {
-        id: tabView
+        id: tabs
         anchors.fill: parent
-        tabsVisible: count > 1
-        focus: true
-        onCurrentIndexChanged: setCurrentTerminalView(tabView.currentIndex)
-
-        Component {
-            id: terminalScreenComponent
-
-            Yat.Screen {}
-        }
-
-        function addTerminalView() {
-            var tab = tabView.addTab("", terminalScreenComponent);
-            tab.active = true;
-            tab.title = Qt.binding(function() { return tab.item.screen.title; });
-            tab.item.aboutToBeDestroyed.connect(destroyTab);
-            tabView.currentIndex = tabView.count - 1;
-        }
-
-        function destroyTab(screenItem) {
-            if (tabView.count == 1) {
+        onCurrentIndexChanged: getTab(currentIndex).children[0].forceActiveFocus()
+        onCountChanged: {
+            // Quit when the last tab is closed
+            if (count == 0)
                 Qt.quit();
-                return;
-            }
+        }
 
-            var i;
-            for (i = 0; i < tabView.count; i++) {
-                if (tabView.getTab(i).item === screenItem) {
-                    if (i == 0)
-                        tabView.currentIndex = 1;
-                    tabView.getTab(i).item.parent = null;
-                    tabView.removeTab(i);
-                    break;
+        Tab {
+            TerminalComponent {}
+
+            onLoaded: title = item.session.title || item.session.initialWorkingDirectory
+        }
+
+        function removeTabWithSession(session) {
+            var i, currentTab;
+            for (i = 0; i < count; i++) {
+                currentTab = getTab(i);
+                if (currentTab.children.length == 0)
+                    continue;
+                if (currentTab.children[0].session == session) {
+                    removeTab(i);
+                    return;
                 }
             }
-        }
-
-        function setCurrentTerminalView(index) {
-            terminalWindow.color = Qt.binding(function() { return tabView.getTab(index).item.screen.defaultBackgroundColor; });
-            tabView.getTab(index).item.forceActiveFocus();
-        }
-
-        Component.onCompleted: {
-            addTerminalView();
-            setCurrentTerminalView(0);
-            terminalWindow.visible = true;
         }
     }
 }
