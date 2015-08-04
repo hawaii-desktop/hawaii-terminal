@@ -50,6 +50,9 @@ endif()
 #    add_definitions(-DQT_NO_DEBUG_OUTPUT)
 #endif()
 
+# PAM
+find_package(PAM REQUIRED)
+
 # Find Qt5 libraries
 find_package(Qt5 5.1.0 REQUIRED COMPONENTS Widgets Qml Quick)
 
