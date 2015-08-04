@@ -37,18 +37,10 @@ if ("${ECM_VERSION}" VERSION_LESS "1.7.0")
     add_custom_target(uninstall "${CMAKE_COMMAND}" -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake")
 endif()
 
-# Build flags
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden -fvisibility-inlines-hidden -Wall -std=c++0x")
-
 # Assume release build with debug info by default
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "RelWithDebInfo" CACHE STRING "" FORCE)
 endif()
-
-# Disable debug output for release builds
-#if(CMAKE_BUILD_TYPE MATCHES "^[Rr]elease$")
-#    add_definitions(-DQT_NO_DEBUG_OUTPUT)
-#endif()
 
 # PAM
 find_package(PAM REQUIRED)
