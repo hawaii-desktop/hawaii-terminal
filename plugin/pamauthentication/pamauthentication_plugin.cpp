@@ -23,7 +23,7 @@
 
 void BackendPlugin::registerTypes(const char *uri)
 {
-    Q_ASSERT(uri == QLatin1String("com.ubuntu.PamAuthentication"));
+    Q_ASSERT(uri == QLatin1String("Hawaii.Terminal.PamAuthentication"));
 
     qmlRegisterType<PamAuthentication>(uri, 0, 1, "PamAuthentication");
 }

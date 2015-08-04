@@ -1,2 +1,2 @@
-module com.ubuntu.PamAuthentication
-plugin PamAuthentication
+module Hawaii.Terminal.PamAuthentication
+plugin pamauthentication

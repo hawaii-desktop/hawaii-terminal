@@ -1,12 +1,12 @@
 include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR} lib src
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-set(PLUGIN_DIR QMLTermWidget)
 add_definitions(-DHAVE_POSIX_OPENPT -DHAVE_SYS_TIME_H -DHAVE_UPDWTMPX)
-add_definitions(-DQ_WS_UBUNTU)
 
-set(qmltermwidget_SRCS
+set(SOURCES
     src/ksession.h
     src/ksession.cpp
     src/qmltermwidget_plugin.h
@@ -62,38 +62,20 @@ set(qmltermwidget_SRCS
     lib/Vt102Emulation.cpp
 )
 
-add_library(qmltermwidget MODULE
-    ${qmltermwidget_SRCS}
-)
+add_library(qmltermwidget SHARED ${SOURCES})
+target_link_libraries(qmltermwidget
+                      Qt5::Gui
+                      Qt5::Qml
+                      Qt5::Quick
+                      Qt5::Widgets)
 
-qt5_use_modules(qmltermwidget Gui Qml Quick Widgets)
-
-# Copy the plugin, the qmldir file and other assets to the build dir for running in QtCreator
-if(NOT "${CMAKE_CURRENT_SOURCE_DIR}" STREQUAL "${CMAKE_CURRENT_BINARY_DIR}")
-    add_custom_target(qmltermwidget-qmldir ALL
-        COMMAND cp ${CMAKE_CURRENT_SOURCE_DIR}/src/qmldir ${CMAKE_CURRENT_BINARY_DIR}/../${PLUGIN_DIR}
-        DEPENDS ${QMLFILES}
-    )
-    add_custom_target(qmltermwidget-layouts-schemes ALL
-        COMMAND cp -a ${CMAKE_CURRENT_SOURCE_DIR}/lib/color-schemes ${CMAKE_CURRENT_BINARY_DIR}/../${PLUGIN_DIR}
-        COMMAND cp -a ${CMAKE_CURRENT_SOURCE_DIR}/lib/kb-layouts ${CMAKE_CURRENT_BINARY_DIR}/../${PLUGIN_DIR}
-        DEPENDS ${QMLFILES}
-    )
-    add_custom_command(TARGET qmltermwidget POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/../${PLUGIN_DIR}
-        COMMENT "Creating plugin directory layout in the build dir"
-        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:qmltermwidget> ${CMAKE_CURRENT_BINARY_DIR}/../${PLUGIN_DIR}
-        COMMENT "Copying to output directory"
-    )
-    add_custom_target(qmltermwidget-qmlfiles ALL
-        COMMAND cp ${CMAKE_CURRENT_SOURCE_DIR}/src/QMLTermScrollbar.qml ${CMAKE_CURRENT_BINARY_DIR}/../${PLUGIN_DIR}
-        DEPENDS ${QMLFILES}
-    )
-endif(NOT "${CMAKE_CURRENT_SOURCE_DIR}" STREQUAL "${CMAKE_CURRENT_BINARY_DIR}")
-
-
-install(TARGETS qmltermwidget DESTINATION ${QT_IMPORTS_DIR}/${PLUGIN_DIR})
-install(FILES src/qmldir DESTINATION ${QT_IMPORTS_DIR}/${PLUGIN_DIR})
-install(DIRECTORY lib/color-schemes DESTINATION ${QT_IMPORTS_DIR}/${PLUGIN_DIR})
-install(DIRECTORY lib/kb-layouts DESTINATION ${QT_IMPORTS_DIR}/${PLUGIN_DIR})
-install(FILES src/QMLTermScrollbar.qml DESTINATION ${QT_IMPORTS_DIR}/${PLUGIN_DIR})
+install(TARGETS qmltermwidget
+        DESTINATION ${QML_INSTALL_DIR}/Hawaii/Terminal/QMLTermWidget)
+install(FILES src/qmldir
+        DESTINATION ${QML_INSTALL_DIR}/Hawaii/Terminal/QMLTermWidget)
+install(DIRECTORY lib/color-schemes
+        DESTINATION ${QML_INSTALL_DIR}/Hawaii/Terminal/QMLTermWidget)
+install(DIRECTORY lib/kb-layouts
+        DESTINATION ${QML_INSTALL_DIR}/Hawaii/Terminal/QMLTermWidget)
+install(FILES src/QMLTermScrollbar.qml
+        DESTINATION ${QML_INSTALL_DIR}/Hawaii/Terminal/QMLTermWidget)

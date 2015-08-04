@@ -1,4 +1,3 @@
-module QMLTermWidget
+module Hawaii.Terminal.QMLTermWidget
 plugin qmltermwidget
 QMLTermScrollbar 1.0 QMLTermScrollbar.qml
-
