@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import QMLTermWidget 1.0
+import Hawaii.Terminal.QMLTermWidget 1.0
 import QtQuick.Controls 1.2
 
 Rectangle {
