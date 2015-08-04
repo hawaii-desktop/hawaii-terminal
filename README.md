@@ -1,40 +1,26 @@
 Terminal
 ========
 
+[![GitHub release](https://img.shields.io/github/release/hawaii-desktop/hawaii-terminal.svg)](https://github.com/hawaii-desktop/hawaii-terminal)
+[![GitHub issues](https://img.shields.io/github/issues/hawaii-desktop/hawaii-terminal.svg)](https://github.com/hawaii-desktop/hawaii-terminal/issues)
+
 Terminal emulator for the Hawaii desktop environment.
 
 ## Dependencies
 
-In order to build and install Terminal you need Qt 5.1 or better with
-at least the following modules:
+Qt >= 5.1 with at least the following modules is required:
 
-* qtbase
-* qtdeclarative
-* qtquickcontrols
+* [qtbase](http://code.qt.io/cgit/qt/qtbase.git)
+* [qtdeclarative](http://code.qt.io/cgit/qt/qtdeclarative.git)
+* [qtquickcontrols](http://code.qt.io/cgit/qt/qtquickcontrols.git)
 
-You can either build Qt from git yourself or download binaries.
+The following modules and their dependencies are required:
 
-More information about building Qt 5 from can be found here:
-
-  http://qt-project.org/wiki/Building-Qt-5-from-Git
-
-Qt 5 binaries can be downloaded from http://qt-project.org/downloads
-
-## Fetch git submodules
-
-Terminal uses yat, a terminal emulator written in QML and C++.
-You can find it [here](https://github.com/jorgen/yat).
-
-The first time you build Terminal, make sure the yat submodule is fetched.
-Type this from the Terminal source code root:
-
-```sh
-git submodule update --init
-```
+* [ECM >= 1.4.0](http://quickgit.kde.org/?p=extra-cmake-modules.git)
 
 ## Build
 
-Building Terminal is a piece of cake.
+Building this project is a piece of cake.
 
 Assuming you are in the source directory, just create a build directory
 and run cmake:
