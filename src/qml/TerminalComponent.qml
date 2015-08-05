@@ -49,6 +49,16 @@ Component {
             id: shortcutsHandler
         }
 
+        ContextMenu {
+            id: contextMenu
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            acceptedButtons: Qt.RightButton
+            onClicked: contextMenu.popup()
+        }
+
         QMLTermScrollbar {
             z: parent.z + 2
             terminal: parent

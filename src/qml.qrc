@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>qml/main.qml</file>
+        <file>qml/ContextMenu.qml</file>
         <file>qml/ShortcutsHandler.qml</file>
         <file>qml/TerminalComponent.qml</file>
         <file>qml/TerminalSettings.qml</file>
