@@ -18,7 +18,9 @@ include(CPack)
 add_custom_target(dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)
 
 # Policies
-cmake_policy(SET CMP0063 NEW)
+if("${CMAKE_VERSION}" VERSION_GREATER "3.3.0" AND "${CMAKE_VERSION}" VERSION_EQUAL "3.3.0")
+    cmake_policy(SET CMP0063 NEW)
+endif()
 
 # ECM
 find_package(ECM 1.4.0 REQUIRED NO_MODULE)
