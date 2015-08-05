@@ -25,9 +25,19 @@
  ***************************************************************************/
 
 import QtQuick 2.0
+import QtQuick.Window 2.0
 
 Item {
     function handle(event) {
+        // Full screen
+        if (event.key == Qt.Key_F11) {
+            event.accepted = true;
+            if (terminalWindow.visibility == Window.FullScreen)
+                terminalWindow.visibility = Window.Windowed;
+            else
+                terminalWindow.visibility = Window.FullScreen;
+        }
+
         if (event.modifiers & Qt.ControlModifier) {
             if (event.modifiers & Qt.ShiftModifier) {
                 // Always accept Ctrl+Shift as a shortcut
