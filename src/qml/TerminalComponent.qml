@@ -59,14 +59,19 @@ Component {
             onClicked: contextMenu.popup()
         }
 
+        SystemPalette {
+            id: syspal
+        }
+
         QMLTermScrollbar {
             z: parent.z + 2
             terminal: parent
-            width: 20
+            width: 10
 
             Rectangle {
                 anchors.fill: parent
-                color: "orange"
+                color: syspal.highlight
+                radius: 6
             }
         }
 
