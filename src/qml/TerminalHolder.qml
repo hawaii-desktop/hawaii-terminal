@@ -24,49 +24,39 @@
  * $END_LICENSE$
  ***************************************************************************/
 
-import QtQuick 2.1
-import QtQuick.Controls 1.1
+import QtQuick 2.0
 
-Menu {
-    MenuItem {
-        text: qsTr("&Copy")
-        shortcut: "Ctrl+Shift+C"
-        onTriggered: terminal.copyClipboard()
+Rectangle {
+    property alias terminal: terminal
+    property alias session: terminal.session
+
+    id: terminalHolder
+    color: terminal.focus ? syspal.highlight : syspal.base
+
+    SystemPalette {
+        id: syspal
     }
 
-    MenuItem {
-        text: qsTr("&Paste")
-        shortcut: "Ctrl+Shift+V"
-        onTriggered: terminal.pasteClipboard()
+    ContextMenu {
+        id: contextMenu
     }
 
-    MenuItem {
-        text: qsTr("Open File Manager")
-        enabled: false
-        onTriggered: Qt.openUrlExternally()
-    }
+    TerminalView {
+        id: terminal
+        anchors{
+            fill: parent
+            margins: 5
+        }
 
-    MenuSeparator {}
-
-    MenuItem {
-        text: qsTr("C&lose Tab")
-        onTriggered: tabs.removeTabWithSession(terminalSession)
-    }
-
-    MenuSeparator {}
-
-    MenuItem {
-        text: qsTr("Split Horizontally")
-        onTriggered: splitter.splitHorizontally()
-    }
-
-    MenuItem {
-        text: qsTr("Split Vertically")
-        onTriggered: splitter.splitVertically()
-    }
-
-    MenuItem {
-        text: qsTr("Collapse Subterminal")
-        onTriggered: splitter.collapse()
+        MouseArea {
+            anchors.fill: parent
+            acceptedButtons: Qt.LeftButton | Qt.RightButton
+            onClicked: {
+                if (mouse.button == Qt.LeftButton)
+                    terminal.forceActiveFocus();
+                else
+                    contextMenu.popup();
+            }
+        }
     }
 }

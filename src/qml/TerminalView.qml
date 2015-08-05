@@ -24,49 +24,48 @@
  * $END_LICENSE$
  ***************************************************************************/
 
-import QtQuick 2.1
-import QtQuick.Controls 1.1
+import QtQuick 2.0
+import Hawaii.Terminal.QMLTermWidget 1.0
 
-Menu {
-    MenuItem {
-        text: qsTr("&Copy")
-        shortcut: "Ctrl+Shift+C"
-        onTriggered: terminal.copyClipboard()
+QMLTermWidget {
+    signal sessionFinished(var session);
+
+    id: terminal
+    width: parent.width
+    height: parent.height
+    font.family: settings.fontStyle
+    font.pointSize: settings.fontSize
+    colorScheme: settings.colorScheme
+    session: QMLTermSession {
+        id: terminalSession
+        initialWorkingDirectory: "$HOME"
+        onFinished: tabs.removeTabWithSession(terminalSession)
     }
 
-    MenuItem {
-        text: qsTr("&Paste")
-        shortcut: "Ctrl+Shift+V"
-        onTriggered: terminal.pasteClipboard()
+    Keys.onPressed: shortcutsHandler.handle(event)
+
+    ShortcutsHandler {
+        id: shortcutsHandler
     }
 
-    MenuItem {
-        text: qsTr("Open File Manager")
-        enabled: false
-        onTriggered: Qt.openUrlExternally()
+    SystemPalette {
+        id: syspal
     }
 
-    MenuSeparator {}
+    QMLTermScrollbar {
+        z: parent.z + 2
+        terminal: parent
+        width: 10
 
-    MenuItem {
-        text: qsTr("C&lose Tab")
-        onTriggered: tabs.removeTabWithSession(terminalSession)
+        Rectangle {
+            anchors.fill: parent
+            color: syspal.highlight
+            radius: 6
+        }
     }
 
-    MenuSeparator {}
-
-    MenuItem {
-        text: qsTr("Split Horizontally")
-        onTriggered: splitter.splitHorizontally()
-    }
-
-    MenuItem {
-        text: qsTr("Split Vertically")
-        onTriggered: splitter.splitVertically()
-    }
-
-    MenuItem {
-        text: qsTr("Collapse Subterminal")
-        onTriggered: splitter.collapse()
+    Component.onCompleted: {
+        terminalSession.startShellProgram();
+        forceActiveFocus();
     }
 }

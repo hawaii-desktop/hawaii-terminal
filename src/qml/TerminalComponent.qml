@@ -25,59 +25,7 @@
  ***************************************************************************/
 
 import QtQuick 2.0
-import Hawaii.Terminal.QMLTermWidget 1.0
 
 Component {
-    QMLTermWidget {
-        signal sessionFinished(var session);
-
-        id: terminal
-        width: parent.width
-        height: parent.height
-        font.family: settings.fontStyle
-        font.pointSize: settings.fontSize
-        colorScheme: settings.colorScheme
-        session: QMLTermSession {
-            id: terminalSession
-            initialWorkingDirectory: "$HOME"
-            onFinished: tabs.removeTabWithSession(terminalSession)
-        }
-
-        Keys.onPressed: shortcutsHandler.handle(event)
-
-        ShortcutsHandler {
-            id: shortcutsHandler
-        }
-
-        ContextMenu {
-            id: contextMenu
-        }
-
-        MouseArea {
-            anchors.fill: parent
-            acceptedButtons: Qt.RightButton
-            onClicked: contextMenu.popup()
-        }
-
-        SystemPalette {
-            id: syspal
-        }
-
-        QMLTermScrollbar {
-            z: parent.z + 2
-            terminal: parent
-            width: 10
-
-            Rectangle {
-                anchors.fill: parent
-                color: syspal.highlight
-                radius: 6
-            }
-        }
-
-        Component.onCompleted: {
-            terminalSession.startShellProgram();
-            forceActiveFocus();
-        }
-    }
+    TerminalLayout {}
 }
