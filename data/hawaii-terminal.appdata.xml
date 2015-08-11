@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+  <id type="desktop">org.hawaiios.hawaii-terminal.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2</project_license>
+  <name>Terminal</name>
+  <summary>A lightweight multiplatform terminal emulator</summary>
+  <description>
+    <p>
+        Hawaii Terminal is a lightweight and easy to use multiplatform
+        terminal emulator for accessing a UNIX shell environment which
+        can be used to run programs available on your system.
+    <p>
+        Its main features are:
+    </p>
+    <ul>
+      <li>Profiles and color schemes</li>
+      <li>Multiple tabs</li>
+      <li>Layout terminals side-by-side</li>
+      <li>Text search</li>
+      <li>Easy user interface</li>
+      <li>Full screen mode</li>
+      <li>Integration with system clipboard</li>
+    </ul>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <image>http://hawaiios.org/projects/hawaii-terminal/screenshot1.png</image>
+      <caption>The default Terminal window.</caption>
+    </screenshot>
+  </screenshots>
+  <screenshots>
+    <screenshot type="default">
+      <image>http://hawaiios.org/projects/hawaii-terminal/screenshot2.png</image>
+      <caption>Multiple tabs, splitted terminals and highlighted text.</caption>
+    </screenshot>
+  </screenshots>
+  <screenshots>
+    <screenshot type="default">
+      <image>http://hawaiios.org/projects/hawaii-terminal/screenshot3.png</image>
+      <caption>Search bar and highlighted match.</caption>
+    </screenshot>
+  </screenshots>
+  <url type="homepage">http://hawaiios.org/projects/hawaii-terminal</url>
+  <project_group>Hawaii</project_group>
+</application>
