@@ -44,16 +44,25 @@ To do a release build instead it can be:
 cmake -DCMAKE_INSTALL_PREFIX=/opt/hawaii -DCMAKE_BUILD_TYPE=Release ..
 ```
 
-If not passed, the `CMAKE_INSTALL_PREFIX` parameter defaults to /usr/local.
-You have to specify a path that fits your needs, /opt/hawaii is just an example.
-
-Package maintainers would pass `-DCMAKE_INSTALL_PREFIX=/usr`.
-
 The `CMAKE_BUILD_TYPE` parameter allows the following values:
 
 * **Debug:** debug build
 * **Release:** release build
 * **RelWithDebInfo:** release build with debugging information
+
+If not passed, the `CMAKE_INSTALL_PREFIX` parameter defaults to /usr/local.
+You have to specify a path that fits your needs, /opt/hawaii is just an example.
+
+### Install on /usr
+
+To install alongside other applications, please specify the ``/usr``
+installation prefix and pass extra arguments to use the Qt system paths:
+
+```sh
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DKDE_INSTALL_USE_QT_SYS_PATHS=ON ..
+```
 
 ## Installation
 
