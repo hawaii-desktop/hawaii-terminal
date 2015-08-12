@@ -80,4 +80,24 @@ ApplicationWindow {
             }
         }
     }
+
+    function newWindow() {
+        var component;
+
+        var finishNewWindow = function() {
+            if (component.status == Component.Ready) {
+                var window = component.createObject(null);
+                if (window == null)
+                    console.error("Error creating a new window");
+            } else if (component.status == Component.Error) {
+                console.error("Error loading component to create a new window:", component.errorString());
+            }
+        };
+
+        component = Qt.createComponent("main.qml");
+        if (component.status == Component.Ready)
+            finishNewWindow();
+        else
+            component.statusChanged.connect(finishNewWindow);
+    }
 }
