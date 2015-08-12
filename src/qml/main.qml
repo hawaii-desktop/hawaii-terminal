@@ -27,6 +27,7 @@
 import QtQuick 2.1
 import QtQuick.Window 2.1
 import QtQuick.Controls 1.1
+import QtQuick.Dialogs 1.1
 
 ApplicationWindow {
     id: terminalWindow
@@ -34,6 +35,13 @@ ApplicationWindow {
     minimumWidth: 800
     minimumHeight: 600
     visible: true
+
+    MessageDialog {
+        id: errorDialog
+        modality: Qt.WindowModal
+        title: qsTr("Error")
+        icon: StandardIcon.Critical
+    }
 
     TerminalSettings {
         id: settings
@@ -91,6 +99,10 @@ ApplicationWindow {
                     console.error("Error creating a new window");
             } else if (component.status == Component.Error) {
                 console.error("Error loading component to create a new window:", component.errorString());
+                errorMessage(qsTr("Unable to create a new window"),
+                             qsTr("Terminal is unable to create a new window for an internal error.\n" +
+                                  "Please try again and in case this happens again report this issue."),
+                             qsTr("Error reported during component creation: %1").arg(component.errorString()));
             }
         };
 
@@ -99,5 +111,12 @@ ApplicationWindow {
             finishNewWindow();
         else
             component.statusChanged.connect(finishNewWindow);
+    }
+
+    function errorMessage(text, informative, details) {
+        errorDialog.text = text;
+        errorDialog.informativeText = informative;
+        errorDialog.detailedText = details;
+        errorDialog.open();
     }
 }
