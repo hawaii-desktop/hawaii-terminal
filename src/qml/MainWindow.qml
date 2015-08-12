@@ -49,9 +49,14 @@ ApplicationWindow {
         tabsVisible: count > 1
         onCurrentIndexChanged: getTab(currentIndex).children[0].terminal.forceActiveFocus()
         onCountChanged: {
-            // Quit when the last tab is closed
-            if (count == 0)
-                Qt.quit();
+            // Close this window when the last tab is closed or quit
+            // if there are no other windows open
+            if (count == 0) {
+                if (terminalApp.windowCount === 0)
+                    Qt.quit();
+                else
+                    terminalWindow.close();
+            }
         }
 
         Tab {

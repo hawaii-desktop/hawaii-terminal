@@ -36,7 +36,11 @@ QtObject {
         icon: StandardIcon.Critical
     }
 
-    property var model: ListModel {}
+    property var model: ListModel {
+        id: model
+    }
+
+    readonly property alias windowCount: model.count
 
     function newWindow() {
         var component;
