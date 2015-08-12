@@ -41,5 +41,8 @@ int main(int argc, char *argv[])
     QQuickWindow::setDefaultAlphaBuffer(true);
 
     QQmlApplicationEngine engine(QUrl("qrc:/qml/main.qml"));
+    QObject *main = engine.rootObjects().at(0);
+    QMetaObject::invokeMethod(main, "newWindow");
+
     return app.exec();
 }

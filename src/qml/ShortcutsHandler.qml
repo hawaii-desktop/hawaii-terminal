@@ -46,7 +46,7 @@ Item {
                 switch (event.key) {
                 // Tabs
                 case Qt.Key_N:
-                    terminalWindow.newWindow();
+                    terminalApp.newWindow();
                     break;
                 case Qt.Key_T:
                     tabs.addNewTab(terminalComponent);

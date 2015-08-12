@@ -25,69 +25,18 @@
  ***************************************************************************/
 
 import QtQuick 2.1
-import QtQuick.Window 2.1
-import QtQuick.Controls 1.1
 import QtQuick.Dialogs 1.1
 
-ApplicationWindow {
-    id: terminalWindow
-    title: qsTr("Terminal")
-    minimumWidth: 800
-    minimumHeight: 600
-    visible: true
+QtObject {
+    id: terminalApp
 
-    MessageDialog {
-        id: errorDialog
+    property var errorDialog: MessageDialog {
         modality: Qt.WindowModal
         title: qsTr("Error")
         icon: StandardIcon.Critical
     }
 
-    TerminalSettings {
-        id: settings
-    }
-
-    TerminalComponent {
-        id: terminalComponent
-    }
-
-    TabView {
-        id: tabs
-        anchors.fill: parent
-        tabsVisible: count > 1
-        onCurrentIndexChanged: getTab(currentIndex).children[0].terminal.forceActiveFocus()
-        onCountChanged: {
-            // Quit when the last tab is closed
-            if (count == 0)
-                Qt.quit();
-        }
-
-        Tab {
-            title: qsTr("Shell %1").arg(1)
-
-            TerminalComponent {}
-
-            //onLoaded: title = item.session.title || item.session.initialWorkingDirectory
-        }
-
-        function addNewTab(component) {
-            tabs.insertTab(tabs.count, qsTr("Shell %1").arg(tabs.count + 1), component);
-            tabs.currentIndex = tabs.count - 1;
-        }
-
-        function removeTabWithSession(session) {
-            var i, currentTab;
-            for (i = 0; i < count; i++) {
-                currentTab = getTab(i);
-                if (currentTab.children.length == 0)
-                    continue;
-                if (currentTab.children[0].session == session) {
-                    removeTab(i);
-                    return;
-                }
-            }
-        }
-    }
+    property var model: ListModel {}
 
     function newWindow() {
         var component;
@@ -97,6 +46,8 @@ ApplicationWindow {
                 var window = component.createObject(null);
                 if (window == null)
                     console.error("Error creating a new window");
+                else
+                    model.append({"window": window});
             } else if (component.status == Component.Error) {
                 console.error("Error loading component to create a new window:", component.errorString());
                 errorMessage(qsTr("Unable to create a new window"),
@@ -106,7 +57,7 @@ ApplicationWindow {
             }
         };
 
-        component = Qt.createComponent("main.qml");
+        component = Qt.createComponent("MainWindow.qml");
         if (component.status == Component.Ready)
             finishNewWindow();
         else
