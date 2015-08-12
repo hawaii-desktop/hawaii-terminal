@@ -65,9 +65,9 @@ QtObject {
     }
 
     function errorMessage(text, informative, details) {
-        errorDialog.text = text;
-        errorDialog.informativeText = informative;
-        errorDialog.detailedText = details;
+        errorDialog.text = text ? text : "";
+        errorDialog.informativeText = informative ? informative : "";
+        errorDialog.detailedText = details ? details : "";
         errorDialog.open();
     }
 }
