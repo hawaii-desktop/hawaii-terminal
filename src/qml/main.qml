@@ -47,7 +47,7 @@ ApplicationWindow {
         id: tabs
         anchors.fill: parent
         tabsVisible: count > 1
-        onCurrentIndexChanged: getTab(currentIndex).children[0].forceActiveFocus()
+        onCurrentIndexChanged: getTab(currentIndex).children[0].terminal.forceActiveFocus()
         onCountChanged: {
             // Quit when the last tab is closed
             if (count == 0)
