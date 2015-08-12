@@ -55,9 +55,16 @@ ApplicationWindow {
         }
 
         Tab {
+            title: qsTr("Shell %1").arg(1)
+
             TerminalComponent {}
 
-            onLoaded: title = item.session.title || item.session.initialWorkingDirectory
+            //onLoaded: title = item.session.title || item.session.initialWorkingDirectory
+        }
+
+        function addNewTab(component) {
+            tabs.insertTab(tabs.count, qsTr("Shell %1").arg(tabs.count + 1), component);
+            tabs.currentIndex = tabs.count - 1;
         }
 
         function removeTabWithSession(session) {

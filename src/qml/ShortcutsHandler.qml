@@ -46,8 +46,7 @@ Item {
                 switch (event.key) {
                 // Tabs
                 case Qt.Key_T:
-                    tabs.insertTab(tabs.count, "", terminalComponent);
-                    tabs.currentIndex = tabs.count - 1;
+                    tabs.addNewTab(terminalComponent);
                     break;
                 case Qt.Key_W:
                     tabs.removeTabWithSession(terminalSession);
