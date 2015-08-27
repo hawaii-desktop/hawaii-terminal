@@ -16,11 +16,12 @@
     <ul>
       <li>Profiles and color schemes</li>
       <li>Multiple tabs</li>
-      <li>Layout terminals side-by-side</li>
+      <li>Horizontal and vertical split</li>
       <li>Text search</li>
       <li>Easy user interface</li>
       <li>Full screen mode</li>
       <li>Integration with system clipboard</li>
+      <li>Dynamic line wrapping</li>
     </ul>
   </description>
   <screenshots>
