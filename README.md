@@ -1,6 +1,7 @@
 Terminal
 ========
 
+[![IRC Network](https://img.shields.io/badge/irc-freenode-blue.svg "IRC Freenode")](https://webchat.freenode.net/?channels=hawaii-desktop)
 [![GitHub release](https://img.shields.io/github/release/hawaii-desktop/hawaii-terminal.svg)](https://github.com/hawaii-desktop/hawaii-terminal)
 [![GitHub issues](https://img.shields.io/github/issues/hawaii-desktop/hawaii-terminal.svg)](https://github.com/hawaii-desktop/hawaii-terminal/issues)
 [![Build Status](https://travis-ci.org/hawaii-desktop/hawaii-terminal.svg?branch=master)](https://travis-ci.org/hawaii-desktop/hawaii-terminal)
