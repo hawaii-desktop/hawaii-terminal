@@ -69,6 +69,24 @@ Item {
                     break;
                 }
             }
+
+            switch (event.key) {
+            // Zoom in
+            case Qt.Key_Plus:
+                event.accepted = true;
+                settings.fontSize = Math.min(settings.fontSize + 1, settings.maxFontSize);
+                break;
+            // Zoom out
+            case Qt.Key_Minus:
+                event.accepted = true;
+                settings.fontSize = Math.max(settings.fontSize - 1, settings.minFontSize);
+                break;
+            // Normal size
+            case Qt.Key_0:
+                event.accepted = true;
+                settings.fontSize = settings.defaultFontSize;
+                break;
+            }
         } else if (event.modifiers & Qt.ShiftModifier) {
             switch (event.key) {
             // Tab switching
