@@ -69,4 +69,11 @@ Menu {
         text: qsTr("Collapse Subterminal")
         onTriggered: splitter.collapse()
     }
+
+    MenuSeparator {}
+
+    MenuItem {
+        text: qsTr("Edit Current P&rofile...")
+        onTriggered: terminalApp.editCurrentProfile()
+    }
 }

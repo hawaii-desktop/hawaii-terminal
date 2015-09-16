@@ -36,6 +36,10 @@ QtObject {
         icon: StandardIcon.Critical
     }
 
+    property var profileDialog: ProfileDialog {
+        modality: Qt.WindowModal
+    }
+
     property var model: ListModel {
         id: model
     }
@@ -46,26 +50,36 @@ QtObject {
         var component;
 
         var finishNewWindow = function() {
-            if (component.status == Component.Ready) {
+            switch (component.status) {
+            case Component.Ready:
                 var window = component.createObject(null);
-                if (window == null)
+                if (window === null)
                     console.error("Error creating a new window");
                 else
                     model.append({"window": window});
-            } else if (component.status == Component.Error) {
+                break;
+            case Component.Null:
+            case Component.Error:
                 console.error("Error loading component to create a new window:", component.errorString());
                 errorMessage(qsTr("Unable to create a new window"),
                              qsTr("Terminal is unable to create a new window for an internal error.\n" +
                                   "Please try again and in case this happens again report this issue."),
                              qsTr("Error reported during component creation: %1").arg(component.errorString()));
+                break;
+            default:
+                break;
             }
         };
 
         component = Qt.createComponent("MainWindow.qml");
-        if (component.status == Component.Ready)
+        if (component.status !== Component.Loading)
             finishNewWindow();
         else
             component.statusChanged.connect(finishNewWindow);
+    }
+
+    function editCurrentProfile() {
+        profileDialog.open();
     }
 
     function errorMessage(text, informative, details) {
