@@ -49,8 +49,15 @@ Menu {
     MenuSeparator {}
 
     MenuItem {
+        text: qsTr("&New Tab")
+        //shortcut: "Ctrl+Shift+T"
+        onTriggered: tabs.addNewTab(terminalComponent)
+    }
+
+    MenuItem {
         text: qsTr("C&lose Tab")
-        onTriggered: tabs.removeTabWithSession(terminalSession)
+        //shortcut: "Ctrl+Shift+W"
+        onTriggered: tabs.removeTabWithSession(terminal.session)
     }
 
     MenuSeparator {}

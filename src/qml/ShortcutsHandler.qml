@@ -52,7 +52,7 @@ Item {
                     tabs.addNewTab(terminalComponent);
                     break;
                 case Qt.Key_W:
-                    tabs.removeTabWithSession(terminalSession);
+                    tabs.removeTabWithSession(terminal.session);
                     break;
                 case Qt.Key_Q:
                     for (var i = tabs.count - 1; i >= 0; i--)
