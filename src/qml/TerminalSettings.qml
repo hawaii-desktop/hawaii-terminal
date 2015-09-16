@@ -31,7 +31,7 @@ Item {
     property string fontStyle: "Monospace"
     property string colorScheme: "cool-retro-term"
 
-    readonly property int defaultFontSize: 14
-    readonly property int minFontSize: 8
-    readonly property int maxFontSize: 32
+    readonly property int defaultFontSize: 12
+    readonly property int minFontSize: 10
+    readonly property int maxFontSize: 14
 }
