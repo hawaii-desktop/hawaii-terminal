@@ -33,5 +33,5 @@ Item {
 
     readonly property int defaultFontSize: 12
     readonly property int minFontSize: 10
-    readonly property int maxFontSize: 14
+    readonly property int maxFontSize: 32
 }
