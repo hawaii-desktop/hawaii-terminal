@@ -1,2 +1,2 @@
 add_subdirectory(qmltermwidget)
-add_subdirectory(pamauthentication)
+#add_subdirectory(pamauthentication)

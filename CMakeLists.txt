@@ -48,7 +48,7 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 # PAM
-find_package(PAM REQUIRED)
+#find_package(PAM REQUIRED)
 
 # Find Qt5 libraries
 find_package(Qt5 5.2.0 REQUIRED COMPONENTS Core DBus Gui Widgets Qml Quick)
