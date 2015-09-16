@@ -61,8 +61,9 @@ SplitView {
         } else if (splitter.orientation == Qt.Horizontal) {
             term = createTerminal();
             splitter.addItem(term);
+            terminalHolder.Layout.maximumWidth = terminalHolder.width / 2;
         } else {
-
+            console.log("H: NOT HANDLED");
         }
     }
 
@@ -80,12 +81,14 @@ SplitView {
         } else if (splitter.orientation == Qt.Vertical) {
             term = createTerminal();
             splitter.addItem(term);
+            terminalHolder.Layout.maximumHeight = terminalHolder.height / 2;
         } else {
-
+            console.log("V: NOT HANDLED");
         }
     }
 
     function collapse() {
+        console.log("Request Qt 5.6 :-(");
         splitter.removeItem(splitter);
     }
 }
