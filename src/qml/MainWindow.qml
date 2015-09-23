@@ -35,6 +35,12 @@ ApplicationWindow {
     minimumHeight: 600
     visible: true
 
+    QtObject {
+        id: cachedInfo
+
+        property int visibility
+    }
+
     TerminalSettings {
         id: settings
     }
@@ -93,6 +99,15 @@ ApplicationWindow {
         function renameCurrentTab() {
             renameDialog.title = getTab(currentIndex).title;
             renameDialog.open();
+        }
+    }
+
+    function toggleFullScreen() {
+        if (terminalWindow.visibility == Window.FullScreen) {
+            terminalWindow.visibility = cachedInfo.visibility;
+        } else {
+            cachedInfo.visibility = terminalWindow.visibility;
+            terminalWindow.visibility = Window.FullScreen;
         }
     }
 }

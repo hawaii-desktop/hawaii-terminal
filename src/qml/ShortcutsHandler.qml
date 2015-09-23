@@ -32,10 +32,7 @@ Item {
         // Full screen
         if (event.key == Qt.Key_F11) {
             event.accepted = true;
-            if (terminalWindow.visibility == Window.FullScreen)
-                terminalWindow.visibility = Window.Windowed;
-            else
-                terminalWindow.visibility = Window.FullScreen;
+            terminalWindow.toggleFullScreen();
         }
 
         if (event.modifiers & Qt.ControlModifier) {
