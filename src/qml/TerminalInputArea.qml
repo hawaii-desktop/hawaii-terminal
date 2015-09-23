@@ -37,6 +37,7 @@ MouseArea {
 
     anchors.fill: parent
     acceptedButtons: Qt.AllButtons
+    z: parent.z + 1
     onDoubleClicked: {
         doubleClickDetected(mouse.x, mouse.y, mouse.button, mouse.buttons, mouse.modifiers);
     }
