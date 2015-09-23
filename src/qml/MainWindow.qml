@@ -29,6 +29,8 @@ import QtQuick.Window 2.1
 import QtQuick.Controls 1.1
 
 ApplicationWindow {
+    property alias profile: settings
+
     id: terminalWindow
     title: qsTr("Terminal")
     minimumWidth: 800

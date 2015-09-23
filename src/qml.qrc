@@ -12,6 +12,7 @@
         <file>qml/TerminalLayout.qml</file>
         <file>qml/TerminalSettings.qml</file>
         <file>qml/TerminalView.qml</file>
+        <file>qml/profile/General.qml</file>
         <file>qml/profile/Scrolling.qml</file>
     </qresource>
 </RCC>

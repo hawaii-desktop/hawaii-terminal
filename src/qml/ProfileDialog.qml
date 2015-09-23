@@ -47,8 +47,7 @@ Dialog {
             TabView {
                 Tab {
                     title: qsTr("General")
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
+                    source: "profile/General.qml"
                 }
 
                 Tab {
