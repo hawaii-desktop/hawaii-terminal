@@ -65,6 +65,17 @@ Item {
                 case Qt.Key_V:
                     terminal.pasteClipboard();
                     break;
+                // Tab switching
+                case Qt.Key_Left:
+                    if (tabs.currentIndex > 0) {
+                        event.accepted = true;
+                        tabs.moveTab(tabs.currentIndex, tabs.currentIndex - 1);
+                    }
+                    break;
+                case Qt.Key_Right:
+                    event.accepted = true;
+                    tabs.moveTab(tabs.currentIndex, tabs.currentIndex + 1);
+                    break;
                 default:
                     break;
                 }
