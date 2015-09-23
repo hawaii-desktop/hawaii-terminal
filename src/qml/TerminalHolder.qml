@@ -48,15 +48,14 @@ Rectangle {
             margins: 5
         }
 
-        MouseArea {
+        TerminalInputArea {
             anchors.fill: parent
-            acceptedButtons: Qt.LeftButton | Qt.RightButton
-            onClicked: {
-                if (mouse.button == Qt.LeftButton)
-                    terminal.forceActiveFocus();
-                else
-                    contextMenu.popup();
-            }
+            onMouseMoveDetected: terminal.simulateMouseMove(x, y, button, buttons, modifiers)
+            onDoubleClickDetected: terminal.simulateMouseDoubleClick(x, y, button, buttons, modifiers)
+            onMousePressDetected: terminal.simulateMousePress(x, y, button, buttons, modifiers)
+            onMouseReleaseDetected: terminal.simulateMouseRelease(x, y, button, buttons, modifiers)
+            onMouseWheelDetected: terminal.simulateWheel(x, y, buttons, modifiers, angleDelta)
+            onAlternateAction: contextMenu.popup()
         }
     }
 }

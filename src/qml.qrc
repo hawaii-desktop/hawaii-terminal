@@ -7,6 +7,7 @@
         <file>qml/ShortcutsHandler.qml</file>
         <file>qml/TerminalComponent.qml</file>
         <file>qml/TerminalHolder.qml</file>
+        <file>qml/TerminalInputArea.qml</file>
         <file>qml/TerminalLayout.qml</file>
         <file>qml/TerminalSettings.qml</file>
         <file>qml/TerminalView.qml</file>
