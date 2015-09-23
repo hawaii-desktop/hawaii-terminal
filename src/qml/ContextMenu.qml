@@ -60,6 +60,11 @@ Menu {
         onTriggered: tabs.removeTabWithSession(terminal.session)
     }
 
+    MenuItem {
+        text: qsTr("&Rename Tab...")
+        onTriggered: tabs.renameCurrentTab()
+    }
+
     MenuSeparator {}
 
     MenuItem {

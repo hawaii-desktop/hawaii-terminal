@@ -43,6 +43,11 @@ ApplicationWindow {
         id: terminalComponent
     }
 
+    RenameDialog {
+        id: renameDialog
+        onAccepted: tabs.getTab(tabs.currentIndex).title = renameDialog.title
+    }
+
     TabView {
         id: tabs
         anchors.fill: parent
@@ -83,6 +88,11 @@ ApplicationWindow {
                     return;
                 }
             }
+        }
+
+        function renameCurrentTab() {
+            renameDialog.title = getTab(currentIndex).title;
+            renameDialog.open();
         }
     }
 }
