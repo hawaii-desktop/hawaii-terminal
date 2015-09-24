@@ -70,8 +70,10 @@ Item {
                     }
                     break;
                 case Qt.Key_Right:
-                    event.accepted = true;
-                    tabs.moveTab(tabs.currentIndex, tabs.currentIndex + 1);
+                    if (tabs.currentIndex < tabs.count - 1) {
+                        event.accepted = true;
+                        tabs.moveTab(tabs.currentIndex, tabs.currentIndex + 1);
+                    }
                     break;
                 default:
                     break;
