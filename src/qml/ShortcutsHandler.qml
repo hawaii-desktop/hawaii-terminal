@@ -76,6 +76,27 @@ Item {
                 default:
                     break;
                 }
+            } else if (event.modifiers & Qt.AltModifier) {
+                // Always accept Ctrl+Alt as a shortcut
+                event.accepted = true;
+
+                switch (event.key) {
+                // Panes
+                case Qt.Key_H:
+                    splitter.splitHorizontally()
+                    break;
+                case Qt.Key_V:
+                    splitter.splitVertically()
+                    break;
+                case Qt.Key_PageDown:
+                    console.log("prev");
+                    break;
+                case Qt.Key_PageUp:
+                    console.log("next");
+                    break;
+                default:
+                    break;
+                }
             }
 
             switch (event.key) {
