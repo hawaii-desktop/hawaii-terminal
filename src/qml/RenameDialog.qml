@@ -37,8 +37,10 @@ Dialog {
     modality: Qt.WindowModal
     standardButtons: StandardButton.Cancel | StandardButton.Ok
     onVisibleChanged: {
-        if (visible)
+        if (visible) {
             textField.forceActiveFocus();
+            textField.selectAll();
+        }
     }
 
     ColumnLayout {
