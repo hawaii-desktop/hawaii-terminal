@@ -10,7 +10,7 @@ Terminal emulator for the Hawaii desktop environment.
 
 ## Dependencies
 
-Qt >= 5.1 with at least the following modules is required:
+Qt >= 5.5 with at least the following modules is required:
 
 * [qtbase](http://code.qt.io/cgit/qt/qtbase.git)
 * [qtdeclarative](http://code.qt.io/cgit/qt/qtdeclarative.git)
