@@ -24,7 +24,7 @@
  * $END_LICENSE$
  ***************************************************************************/
 
-import QtQuick 2.0
+import QtQuick 2.2
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
 
@@ -87,8 +87,7 @@ SplitView {
         }
     }
 
-    function collapse() {
-        console.log("Request Qt 5.6 :-(");
-        splitter.removeItem(splitter);
+    function collapse(term) {
+        splitter.removeItem(term);
     }
 }

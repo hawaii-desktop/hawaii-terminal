@@ -79,7 +79,7 @@ Menu {
 
     MenuItem {
         text: qsTr("Collapse Subterminal")
-        onTriggered: splitter.collapse()
+        onTriggered: splitter.collapse(terminal.parent)
     }
 
     MenuSeparator {}
