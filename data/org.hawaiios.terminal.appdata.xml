@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application>
-  <id type="desktop">org.hawaiios.hawaii-terminal.desktop</id>
+  <id type="desktop">org.hawaiios.terminal.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2</project_license>
   <name>Terminal</name>
