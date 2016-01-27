@@ -8,7 +8,7 @@ Terminal
 
 Terminal emulator for the Hawaii desktop environment.
 
-## Dependencies
+# Dependencies
 
 Qt >= 5.5 with at least the following modules is required:
 
@@ -30,7 +30,7 @@ the Free Software Foundation, either version 2 of the License, or
 A copy of the license appears in the file LICENSE.GPLv2 included
 with this software.
 
-## Build and install
+# Build and install
 
 Before building you need to configure the build with cmake and
 specify the installation prefix with the `-DCMAKE_INSTALL_PREFIX`
@@ -58,7 +58,7 @@ make
 sudo make install
 ```
 
-### Build type
+## Build type
 
 You can also specify the build type with the `-DCMAKE_BUILD_TYPE` argument to cmake,
 which allows the following values:
