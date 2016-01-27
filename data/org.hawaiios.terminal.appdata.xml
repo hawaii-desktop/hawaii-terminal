@@ -2,7 +2,7 @@
 <application>
   <id type="desktop">org.hawaiios.terminal.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
-  <project_license>GPL-2</project_license>
+  <project_license>GPL-2.0+</project_license>
   <name>Terminal</name>
   <summary>A lightweight multiplatform terminal emulator</summary>
   <description>
@@ -43,5 +43,9 @@
     </screenshot>
   </screenshots>
   <url type="homepage">http://hawaiios.org/projects/hawaii-terminal</url>
+  <url type="bugtracker">https://github.com/hawaii-desktop/hawaii-terminal/issues</url>
   <project_group>Hawaii</project_group>
+  <provides>
+    <binary>hawaii-terminal</binary>
+  </provides>
 </application>
