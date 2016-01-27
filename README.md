@@ -20,6 +20,16 @@ The following modules and their dependencies are required:
 
 * [ECM >= 1.4.0](http://quickgit.kde.org/?p=extra-cmake-modules.git)
 
+# License
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+
+A copy of the license appears in the file LICENSE.GPLv2 included
+with this software.
+
 ## Build and install
 
 Before building you need to configure the build with cmake and
