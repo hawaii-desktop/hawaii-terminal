@@ -37,6 +37,9 @@ int main(int argc, char *argv[])
     app.setApplicationVersion(TERMINAL_VERSION);
     app.setOrganizationDomain("hawaiios.org");
     app.setOrganizationName("Hawaii");
+#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+    app.setDesktopFileName(QLatin1String("org.hawaiios.terminal.desktop"));
+#endif
 
     QQuickWindow::setDefaultAlphaBuffer(true);
 
