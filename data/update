@@ -2,7 +2,7 @@
 
 import os, re
 
-base_filename = "hawaii-terminal"
+base_filename = "org.hawaiios.terminal"
 translations = {
     "Name": [],
     "GenericName": [],

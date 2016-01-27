@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Application
 Name=Terminal
 Comment=Use the command line
@@ -7,5 +6,5 @@ Keywords=shell;prompt;command;commandline;
 TryExec=hawaii-terminal
 Exec=hawaii-terminal
 Icon=utilities-terminal
-Categories=Hawaii;Qt;Utility;System;TerminalEmulator;
+Categories=X-Hawaii;Qt;System;TerminalEmulator;
 StartupNotify=true
