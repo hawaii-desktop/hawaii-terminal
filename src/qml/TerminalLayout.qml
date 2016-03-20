@@ -64,6 +64,10 @@ SplitView {
             terminalHolder.Layout.maximumWidth = terminalHolder.width / 2;
         } else {
             console.log("H: NOT HANDLED");
+            term = createTerminal();
+            terminalHolder.addItem(term);
+            terminalHolder.splitted = true;
+            terminalHolder.Layout.maximumHeight = terminalHolder.height / 2;
         }
     }
 
@@ -84,6 +88,11 @@ SplitView {
             terminalHolder.Layout.maximumHeight = terminalHolder.height / 2;
         } else {
             console.log("V: NOT HANDLED");
+            term = createTerminal();
+            term.orientation = Qt.Vertical;
+            splitter.addItem(term);
+            splitter.splitted = true;
+            terminalHolder.Layout.maximumHeight = terminalHolder.height / 2;
         }
     }
 

@@ -1,14 +1,14 @@
 [main]
 host = https://www.transifex.com
 
-[hawaii.terminal-desktop-file]
+[terminal.desktop-file]
 type = DESKTOP
 source_lang = en
-source_file = data/hawaii-terminal.desktop.in
-file_filter = data/translations/hawaii-terminal_<lang>.desktop
+source_file = translations/terminal/terminal.desktop
+file_filter = translations/terminal/terminal_<lang>.desktop
 
-[hawaii.terminal]
+[terminal.application]
 type = QT
 source_lang = en
-source_file = src/translations/template.ts
-file_filter = src/translations/<lang>.ts
+source_file = translations/terminal/terminal.ts
+file_filter = translations/terminal/terminal_<lang>.ts
