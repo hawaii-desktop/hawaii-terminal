@@ -1,4 +1,4 @@
-project(Terminal)
+project(HawaiiTerminal)
 
 cmake_minimum_required(VERSION 2.8.12)
 
@@ -8,7 +8,7 @@ if(POLICY CMP0063)
 endif()
 
 # Set version
-set(PROJECT_VERSION "0.5.91")
+set(PROJECT_VERSION "0.6.0")
 set(PROJECT_VERSION_MAJOR 0)
 set(PROJECT_SOVERSION 0)
 
